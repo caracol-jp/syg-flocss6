@@ -1,0 +1,28 @@
+{
+  "name": "@sygnas/syg-flocss6",
+  "version": "0.1.0",
+  "description": "CSS framework based on FLOCSS with CSS custom properties",
+  "author": {
+    "name": "Hiroshi Fukuda",
+    "email": "info.sygnas@gmail.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "private": false,
+  "type": "module",
+  "scripts": {
+    "docs:dev": "vitepress dev docs/src",
+    "docs:build": "vitepress build docs/src --outDir ../dist",
+    "docs:preview": "vitepress preview docs/src --outDir ../dist",
+    "lint": "stylelint \"**/*.scss\" --ignore-path .gitignore"
+  },
+  "devDependencies": {
+    "sass": "^1.77.0",
+    "stylelint": "^16.0.0",
+    "stylelint-config-recommended-scss": "^14.0.0",
+    "vitepress": "^1.2.0"
+  }
+}

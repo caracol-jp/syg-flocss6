@@ -1,0 +1,32 @@
+// syg-flocss6 ドキュメント用フル出力
+// 本リポジトリ内で完結するため、ライブラリ本体はリポジトリルートを直接 @use する
+
+@use "sass:map";
+@use "sass:meta";
+
+// フレームワーク設定（リポジトリルートの syg-flocss6-import/ を直接利用）
+@use "../../../syg-flocss6-import/config" as *;
+
+// 派生（プロジェクト固有の出力）
+@use "../../../syg-flocss6-import/config/layout" as syg-flocss6-layout-project;
+@use "../../../syg-flocss6-import/config/effect" as syg-flocss6-effect-project;
+@use "../../../syg-flocss6-import/config/component" as syg-flocss6-component-project;
+
+// フレームワーク本体の mixin を読み込み
+@use "../../../core" as syg-flocss6-core;
+@use "../../../foundation" as syg-flocss6-foundation;
+@use "../../../layout" as syg-flocss6-layout;
+@use "../../../object/component" as syg-flocss6-component;
+@use "../../../object/effect" as syg-flocss6-effect;
+@use "../../../object/utility" as syg-flocss6-utility;
+
+// フレームワーク適用
+@include syg-flocss6-core.core($config);
+@include syg-flocss6-foundation.foundation($config);
+@include syg-flocss6-layout.layout($config);
+@include syg-flocss6-layout-project.layout-project($config);
+@include syg-flocss6-component.component($config);
+@include syg-flocss6-component-project.component-project($config);
+@include syg-flocss6-effect.effect($config);
+@include syg-flocss6-effect-project.effect-project($config);
+@include syg-flocss6-utility.utility($config);
