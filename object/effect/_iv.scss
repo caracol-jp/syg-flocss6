@@ -1,0 +1,44 @@
+// e-iv コア
+// JS と連動してスクロールインでフェードインするクラスのベース
+//
+// 使い方：
+// ① <div class="e-iv e-iv--xxx js-inview" data-inview="true">
+// ② <div class="js-inview" data-inview="true">
+//      <div class="e-iv e-iv--xxx">
+//
+// modifier と @keyframes はプロジェクト固有のため派生側（config/effect/_iv.scss）に記述する
+
+@use "sass:map";
+@use "../../method";
+
+@mixin e-iv($config) {
+  $opt: map.get($config, effect, iv);
+
+  // ベース
+  @include _e-iv();
+
+  @each $media in map.get($config, core, media-prefix) {
+    @media #{method.mq($config, $media)} {
+      @include _e-iv("#{$media}\\:");
+    }
+  }
+
+  // 表示のディレイ（設定値は派生の $iv.delay から取得）
+  @each $size, $val in map.get($opt, delay) {
+    .e-iv--dl_#{$size} {
+      --e-iv--delay: #{$val};
+    }
+  }
+}
+
+///////////////////////
+// .e-iv ベース
+@mixin _e-iv($media: "") {
+  .#{$media}e-iv {
+    animation-delay: var(--e-iv--delay, 0);
+    animation-duration: var(--e-iv--duration, 0);
+    animation-timing-function: var(--e-iv--timing, ease);
+    animation-fill-mode: forwards;
+    opacity: 0;
+  }
+}

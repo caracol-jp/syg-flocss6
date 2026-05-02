@@ -1,0 +1,23 @@
+// .c-accordion プロジェクト固有の CSS カスタムプロパティのみを記述する
+// 構造スタイルはコア側（node_modules/.../object/component/_accordion.scss）で管理
+
+
+@mixin c-accordion($config) {
+  .c-accordion {
+    --c-accordion__summery--padding: 0.2em 0.5em;
+    --c-accordion__summery--background: #000;
+    --c-accordion__summery--background-hover: red;
+    --c-accordion__summery--background-open: #000;
+    --c-accordion__summery--background-open-hover: red;
+    --c-accordion__summery--color: #fff;
+    --c-accordion__summery--color-hover: #fff;
+    --c-accordion__summery--color-open: #fff;
+    --c-accordion__summery--color-open-hover: #fff;
+    --c-accordion__summery--font-size: var(--root-font-size_l2);
+    --c-accordion__summery--icon-font-size: inherit;
+    --c-accordion__summery--icon-color: inherit;
+    --c-accordion__summery--icon-color-hover: inherit;
+    --c-accordion__summery--icon-color-open: inherit;
+    --c-accordion__summery--icon-color-open-hover: inherit;
+  }
+}

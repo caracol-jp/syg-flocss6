@@ -1,0 +1,20 @@
+// バッジ
+// modify を作成する時は下記の変数を指定する
+// --c-badge--padding
+// --c-badge--font-weight
+// --c-badge--radius
+// --c-badge--bg
+// --c-badge--color
+
+// E-1: 出力は派生（syg-flocss6-import/config/component/_badge.scss）で行う
+@mixin c-badge($config) {
+  .c-badge {
+    display: inline-block;
+    padding: var(--c-badge--padding);
+    font-weight: var(--c-badge--font-weight);
+    border-radius: var(--c-badge--radius);
+    background: var(--c-badge--bg);
+    color: var(--c-badge--color);
+    line-height: 1;
+  }
+}

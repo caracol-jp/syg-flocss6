@@ -1,0 +1,20 @@
+// 外部サービスのエンベッド（Youtube / GoogleMap 等）
+// プロジェクト固有のテーマ（アスペクト比）のみを記述
+// 構造スタイルはコア側（node_modules/.../object/component/_embed.scss）で管理
+
+@use 'sass:map';
+
+// テーマ毎の aspect-ratio（"W / H" 形式の文字列で指定）
+$embed-theme: (
+  youtube: '16 / 9',
+  gmap: '16 / 9',
+);
+
+
+@mixin c-embed($config) {
+  @each $name, $aspect in $embed-theme {
+    .c-embed_#{$name} {
+      aspect-ratio: #{$aspect};
+    }
+  }
+}

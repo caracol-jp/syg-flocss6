@@ -1,0 +1,24 @@
+// バナー一覧
+// justify-content は .l-jst-c_center などで指定する
+
+@use 'sass:map';
+
+
+@mixin c-banners($config) {
+  $mq: map.get($config, core, media-query);
+
+  .c-banners {
+    --c-banners--direction: row;
+
+    @media #{map.get($mq, sp-up)} {
+      --c-banners--gap: 4px;
+      --c-banners--image-width: 200px;
+      --c-banners--image-height: auto;
+    }
+    @media #{map.get($mq, sp)} {
+      --c-banners--gap: 2vw;
+      --c-banners--image-width: 40vw;
+      --c-banners--image-height: auto;
+    }
+  }
+}

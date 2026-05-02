@@ -1,0 +1,11 @@
+@use "core";
+@use "layout";
+@use "component";
+@use "effect";
+
+$config: (
+  core: core.$core,
+  layout: layout.$layout,
+  component: component.$component,
+  effect: effect.$effect,
+);

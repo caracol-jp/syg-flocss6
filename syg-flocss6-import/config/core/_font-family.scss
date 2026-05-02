@@ -1,0 +1,49 @@
+/* stylelint-disable */
+/* stylelint-disable */
+// ↑を書かないとコメントが消されてしまうので
+
+// フォントファミリーとウェイトの一覧
+$font-family: (
+  // 基本フォント：ゴシック
+  gothic: (
+    // family: #{'"Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "BIZ UDPGothic", Meiryo, sans-serif'}
+    family: #{'YakuHanJP, Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "BIZ UDPGothic", Meiryo, sans-serif'}
+  ),
+  // 基本フォント：明朝
+  mincho: (
+    family: #{'YakuHanMP, "Times New Roman", "Hiragino Mincho ProN", "YuMincho", "Yu Mincho", "MS PMincho", serif'}
+  ),
+
+  // NotoSansCJKjp
+  noto-sans-thin: (
+    family: #{'YakuHanJP, "Noto Sans JP", sans-serif'},
+    weight: 100
+  ),
+  noto-sans-light: (
+    family: #{'YakuHanJP, "Noto Sans JP", sans-serif'},
+    weight: 200
+  ),
+  noto-sans-regular: (
+    family: #{'YakuHanJP, "Noto Sans JP", sans-serif'},
+    weight: 400
+  ),
+  noto-sans-bold: (
+    family: #{'YakuHanJP, "Noto Sans JP", sans-serif'},
+    weight: 700
+  ),
+
+  // NotoSerifCJKjp
+  noto-serif-regular: (
+    family: #{'YakuHanMP, "Noto Serif JP", serif'},
+  	weight: 400
+  ),
+  noto-serif-semibold: (
+    family: #{'YakuHanMP, "Noto Serif JP", serif'},
+  	weight: 600
+  ),
+  noto-serif-bold: (
+    family: #{'YakuHanMP, "Noto Serif JP", serif'},
+  	weight: 700
+  ),
+
+) !default;

@@ -1,0 +1,9 @@
+// ページ読み込み
+// プロジェクト固有スタイル（バーの位置・色・幅）は派生側（syg-flocss6-import/config/component/_loading.scss）で設定
+
+@mixin c-loading($config) {
+  // プログレスバーの基本構造
+  .c-loading__progress {
+    position: absolute;
+  }
+}

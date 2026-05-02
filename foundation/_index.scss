@@ -1,0 +1,26 @@
+// syg-flocss6 Foundation
+// 注：v5 の `root` は `core/` に独立モジュール化したため、ここには含めない
+
+@use "html" as *;
+@use "body" as *;
+@use "p" as *;
+@use "a" as *;
+@use "h" as *;
+@use "strong" as *;
+@use "img" as *;
+@use "input" as *;
+@use "label" as *;
+@use "select" as *;
+
+@mixin foundation($config) {
+  @include html($config);
+  @include body($config);
+  @include p($config);
+  @include a($config);
+  @include h($config);
+  @include strong($config);
+  @include img($config);
+  @include input($config);
+  @include label($config);
+  @include select($config);
+}

@@ -1,0 +1,85 @@
+// 動画サムネイルボタン
+// <a class="c-movie-icon-wrapper">
+//   <figure class="c-movie-icon">
+//     <img>
+//   </figure>
+// </a>
+
+@use 'sass:map';
+
+
+// hover 時のカスタムプロパティ上書き（base ::after 用）
+@mixin _c-movie-icon-hover {
+  --c-movie-icon--bg: transparent;
+  --c-movie-icon--color: #fff;
+  --c-movie-icon--border: solid 3px #fff;
+  --c-movie-icon--shadow: none;
+  --c-movie-icon--opacity: 0.6;
+}
+
+@mixin c-movie-icon($config) {
+  .c-movie-icon {
+    --c-movie-icon--bg: rgba(0, 0, 0, 0.2);
+    --c-movie-icon--color: #fff;
+    --c-movie-icon--border: solid 3px #fff;
+    --c-movie-icon--shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+    --c-movie-icon--opacity: 1;
+
+    // 再生アイコンの font / content（プロジェクト固有のアイコン）
+    &::after {
+      font-family: icomoon;
+      content: '\ea1c';
+    }
+
+    // hover 対応デバイスのみ
+    @media (hover: hover) {
+      &:hover {
+        @include _c-movie-icon-hover;
+      }
+    }
+    &:active,
+    &:focus {
+      @include _c-movie-icon-hover;
+    }
+  }
+
+  // アイコンサイズ（コンテナクエリ 4 段階）
+  // .c-movie-icon-wrapper の幅に応じて切り替わる
+  @container movie-link-wrapper (max-width: 200px) {
+    .c-movie-icon {
+      --c-movie-icon--width: 2rem;
+      --c-movie-icon--height: 2rem;
+      --c-movie-icon--font-size: 0.8rem;
+    }
+  }
+  @container movie-link-wrapper (min-width: 200.02px) and (max-width: 400px) {
+    .c-movie-icon {
+      --c-movie-icon--width: 3rem;
+      --c-movie-icon--height: 3rem;
+      --c-movie-icon--font-size: 1.2rem;
+    }
+  }
+  @container movie-link-wrapper (min-width: 400.02px) and (max-width: 600px) {
+    .c-movie-icon {
+      --c-movie-icon--width: 4rem;
+      --c-movie-icon--height: 4rem;
+      --c-movie-icon--font-size: 1.6rem;
+    }
+  }
+  @container movie-link-wrapper (min-width: 600.02px) {
+    .c-movie-icon {
+      --c-movie-icon--width: 5rem;
+      --c-movie-icon--height: 5rem;
+      --c-movie-icon--font-size: 2rem;
+    }
+  }
+
+  // fluid モディファイ: コンテナ幅に追従してアイコンサイズが連続的に変化
+  // cqi = .c-movie-icon-wrapper（container-type: inline-size）の幅基準
+  // 詳細度 (0,2,0) のため 4 段階コンテナクエリ (0,1,0) より優先される
+  .c-movie-icon.c-movie-icon--fluid {
+    --c-movie-icon--width: 30cqi;
+    --c-movie-icon--height: 30cqi;
+    --c-movie-icon--font-size: 10cqi;
+  }
+}

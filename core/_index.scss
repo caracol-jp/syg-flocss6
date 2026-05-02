@@ -1,0 +1,56 @@
+// Core: :root に CSS カスタムプロパティを出力する
+// syg-flocss5 の foundation/_root.scss 相当を独立モジュール化したもの
+
+@use "sass:map";
+@use "../method";
+
+@mixin core($config) {
+  :root {
+    // base
+    --root-line-height: #{map.get($config, core, base, line-height)};
+    --root-background-color: #{map.get($config, core, base, background-color)};
+    --root-font-color: #{map.get($config, core, base, color)};
+    --root-letter-spacing: #{map.get($config, core, base, letter-spacing)};
+
+    // line-height
+    @each $size, $val in map.get($config, core, line-height) {
+      --root-line-height_#{$size}: calc(var(--root-line-height) * #{$val});
+    }
+
+    // letter-spacing
+    @each $size, $val in map.get($config, core, letter-spacing) {
+      --root-letter-spacing_#{$size}: #{$val};
+    }
+
+    // color
+    @each $name, $color in map.get($config, core, color) {
+      @each $type, $code in $color {
+        $suffix: if($type == "base", "", "-#{$type}");
+        $r: method.color-channel($code, "red");
+        $g: method.color-channel($code, "green");
+        $b: method.color-channel($code, "blue");
+
+        --root-color_#{""+$name}#{$suffix}: #{$code};
+        --root-rgb_#{""+$name}#{$suffix}: #{$r}, #{$g}, #{$b};
+      }
+    }
+
+    // margin / padding
+    @each $media, $params in map.get($config, core, spacer) {
+      @media #{method.mq($config, $media)} {
+        @each $size, $val in $params {
+          --root-spacer_#{$size}: #{$val};
+        }
+      }
+    }
+
+    // font-size
+    @each $media, $params in map.get($config, core, font-size) {
+      @media #{method.mq($config, $media)} {
+        @each $size, $val in $params {
+          --root-font-size_#{$size}: #{$val}rem;
+        }
+      }
+    }
+  }
+}

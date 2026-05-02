@@ -1,0 +1,26 @@
+// サイズ指定
+// 主に画像サイズで使うが、boxエレメントのサイズでも使える
+
+@use "sass:map";
+@use "../../method";
+
+@mixin u-min($config) {
+  @each $size, $val in map.get($config, core, min) {
+    @include _u-min($size, $val);
+  }
+
+  @each $media in map.get($config, core, media-prefix) {
+    @media #{method.mq($config, $media)} {
+      @each $size, $val in map.get($config, core, min) {
+        @include _u-min($size, $val, "#{$media}\\:");
+      }
+    }
+  }
+}
+
+@mixin _u-min($size, $val, $media: "") {
+  .#{$media}u-min_#{$size} {
+    min-width: min($val, 100%);
+    height: auto;
+  }
+}

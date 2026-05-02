@@ -1,0 +1,21 @@
+// ページ読み込みのプログレスバー
+// .c-loading 自体のスタイルは HTML インラインで記述する（外部 CSS 読み込み中に見えてしまうため）
+
+
+@mixin c-loading($config) {
+  // 読み込み完了後の動き
+  .c-loading[data-loading-finish='true'] {
+    opacity: 0;
+  }
+
+  // プログレスバー
+  // <div class="c-loading"><div class="c-loading__progress">
+  .c-loading__progress {
+    background-color: var(--root-color_red);
+    left: 0;
+    top: 50%;
+    width: 0;
+    height: 1px;
+    transition: width 0.5s ease;
+  }
+}

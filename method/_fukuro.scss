@@ -1,0 +1,27 @@
+@use "sass:list";
+@use "sass:math";
+
+// 袋文字 text-shadow
+@mixin fukuro-text($color, $width: 2px, $steps: 16) {
+  $param: "";
+
+  @for $i from 0 through $steps {
+    $x: math.cos(math.div($i, $steps) * 360) * $width;
+    $y: math.sin(math.div($i, $steps) * 360) * $width;
+
+    $param: #{$param $x $y 0px $color};
+
+    @if ($i != $steps) {
+      $param: #{$param ", "};
+    }
+  }
+  text-shadow: $param;
+}
+
+// 袋文字 drop-shadow
+@mixin fukuro-drop($color, $width: 2px, $strong: 0.5px) {
+  $param: drop-shadow(-$width 0 $strong $color) drop-shadow($width 0 $strong $color)
+    drop-shadow(0 -#{$width} $strong $color) drop-shadow(0 $width $strong $color);
+
+  filter: $param;
+}

@@ -1,0 +1,37 @@
+// <ol class="c-list-ol">
+// プロジェクト固有の CSS カスタムプロパティ定義とモディファイ
+// 構造スタイルはコア側（node_modules/.../object/component/_list-ol.scss）で管理
+
+
+@mixin c-list-ol($config) {
+  .c-list-ol {
+    --c-list-ol--padding-left: 0;
+    --c-list-ol--line-height: var(--root-line-height);
+    --c-list-ol__li--margin-top: var(--root-spacer_s3);
+    --c-list-ol__li--padding-left: 2em;
+    --c-list-ol__li--style-type: 1;
+    --c-list-ol__li--marker-color: inherit;
+    --c-list-ol__li-before--position: absolute;
+    --c-list-ol__li-before--left: 0;
+    --c-list-ol__li-before--top: 0;
+    --c-list-ol__li-before--width: 1.8em;
+    --c-list-ol__li-before--color: var(--root-color_red);
+    --c-list-ol__li-before--text-align: right;
+    --c-list-ol__li-before--font-size: 1em;
+    --c-list-ol__li-before--font-family: inherit;
+    --c-list-ol__li-before--font-weight: 700;
+  }
+  // カウンターの表記
+  .c-list-ol li::before {
+    content: counters(section, ".") ".";
+  }
+
+  // mincho モディファイ（明朝体 + コロン区切り）
+  .c-list-ol.c-list-ol--mincho {
+    --c-list-ol__li-before--font-family: "Times New Roman";
+    --c-list-ol__li-before--color: var(--root-color_gray);
+  }
+  .c-list-ol.c-list-ol--mincho li::before {
+    content: counters(section, ".") ":";
+  }
+}

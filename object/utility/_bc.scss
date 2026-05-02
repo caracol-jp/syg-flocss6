@@ -1,0 +1,19 @@
+// background-color
+
+@use "sass:map";
+
+@mixin u-bc($config) {
+  @each $name, $color in map.get($config, core, color) {
+    @each $type, $code in $color {
+      @if $type == "base" {
+        .u-bc_#{'' + $name} {
+          background-color: var(--root-color_#{$name});
+        }
+      } @else {
+        .u-bc_#{'' + $name}-#{$type} {
+          background-color: var(--root-color_#{$name}-#{$type});
+        }
+      }
+    }
+  }
+}

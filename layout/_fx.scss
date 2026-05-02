@@ -1,0 +1,106 @@
+// flex box
+// grid と共通の属性は下記ファイル参照
+// gap -> _gap.scss
+// justify-content -> _jst.scss
+// align-items -> _ali.scss
+// order -> _order.scss
+
+@use "sass:map";
+@use "../method";
+
+@mixin l-fx($config) {
+  // クラス接頭辞に使うメディアキー（pc / tb / sp）
+  $media-prefix: map.get($config, core, media-prefix);
+
+  .l-fx {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: var(--l-gap-x, 0px);
+    row-gap: var(--l-gap-y, 0px);
+
+    // 改行しない
+    // ただしスマホは改行させる
+    // <div class="l-fx l-fx--nowrap">
+    &.l-fx--nowrap {
+      @media #{method.mq($config, sp-up)} {
+        flex-wrap: nowrap;
+      }
+    }
+
+    ///////////////////////////////////
+    // 並び方向
+    // <div class="l-fx l-fx--dir_row">
+    @include _l-fx--dir;
+
+    // メディアクエリー毎の設定
+    @each $media in $media-prefix {
+      @media #{method.mq($config, $media)} {
+        @include _l-fx--dir("#{$media}\\:");
+      }
+    }
+  }
+
+  // セル：min-width 共通
+  [class*="l-fx__item_"] {
+    min-width: 0;
+  }
+
+  // セル：分割数指定
+  // 計算式は属性セレクタに集約し、各分割数クラスは CSS 変数の代入のみを行う
+  // _auto 系は計算対象外（:not で除外）
+  // <div class="l-fx"><div class="l-fx__item_2-1">
+  [class*="l-fx__item_"]:not([class*="_auto"]) {
+    flex: 0 0 calc(100% / var(--l-fx__item--divide) * var(--l-fx__item--span) - var(--l-gap-x, 0px) * var(--l-fx__item--span) / var(--l-fx__item--divide));
+  }
+
+  @include _l-fx__item($config);
+
+  @each $media in $media-prefix {
+    @media #{method.mq($config, $media)} {
+      @include _l-fx__item($config, "#{$media}\\:");
+    }
+  }
+
+  // セル：fit-content
+  @include _l-fx__item_auto;
+
+  @each $media in $media-prefix {
+    @media #{method.mq($config, $media)} {
+      @include _l-fx__item_auto("#{$media}\\:");
+    }
+  }
+}
+
+/////////////////////////
+// コンテンツ幅ぴったり
+@mixin _l-fx__item_auto($media: "") {
+  .#{$media}l-fx__item_auto {
+    flex: 1 1 0%;
+  }
+}
+
+/////////////////////////
+// セル分割数指定（CSS 変数の代入のみ。flex の計算式は属性セレクタ側）
+@mixin _l-fx__item($config, $media: "") {
+  $divideList: map.get($config, layout, fx, divide);
+
+  @for $divide from 1 through $divideList {
+    @for $span from 1 through $divide {
+      .#{$media}l-fx__item_#{$divide}-#{$span} {
+        --l-fx__item--divide: #{$divide};
+        --l-fx__item--span: #{$span};
+      }
+    }
+  }
+}
+
+/////////////////////////
+// 方向
+@mixin _l-fx--dir($media: "") {
+  &.#{$media}l-fx--dir_row {
+    flex-direction: row;
+  }
+  &.#{$media}l-fx--dir_col {
+    flex-direction: column;
+  }
+}

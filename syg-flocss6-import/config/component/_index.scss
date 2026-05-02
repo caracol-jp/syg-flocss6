@@ -1,0 +1,58 @@
+@use 'badge' as *;
+@use 'banners' as *;
+@use 'bgimg' as *;
+@use 'btn' as *;
+@use 'caption' as *;
+@use 'embed' as *;
+@use 'loading' as *;
+@use 'frame' as *;
+@use 'hamburger' as *;
+@use 'list-common' as *;
+@use 'list-ul' as *;
+@use 'list-ol' as *;
+@use 'list-dl' as *;
+@use 'movie-icon' as *;
+@use 'return-up' as *;
+@use 'ruby' as *;
+@use 'rule-line' as *;
+@use 'share-btn' as *;
+@use 'sound-btn' as *;
+@use 'table' as *;
+@use 'accordion' as *;
+@use 'txt-box' as *;
+@use 'article-visual' as *;
+@use 'fancybox' as *;
+
+// コア側がコンパイル時パラメータとして参照する設定マップ
+// hamburger のみ line.count / transform-origin を保持（他は不要）
+$component: (
+  hamburger: $hamburger,
+);
+
+// 派生の出力を集約する mixin
+@mixin component-project($config) {
+  @include c-badge($config);
+  @include c-banners($config);
+  @include c-bgimg($config);
+  @include c-btn($config);
+  @include c-caption($config);
+  @include c-accordion($config);
+  @include c-article-visual($config);
+  @include c-embed($config);
+  @include c-frame($config);
+  @include c-hamburger($config);
+  @include fancybox($config);
+  @include c-list-common($config);
+  @include c-list-ul($config);
+  @include c-list-ol($config);
+  @include c-list-dl($config);
+  @include c-loading($config);
+  @include c-movie-icon($config);
+  @include c-return-up($config);
+  @include c-ruby($config);
+  @include c-rule-line($config);
+  @include c-share-btn($config);
+  @include c-sound-btn($config);
+  @include c-table($config);
+  @include c-txt-box($config);
+}

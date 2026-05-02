@@ -1,0 +1,8 @@
+// チャンネル取得用のヘルパー関数
+// method.color-channel($rgb, "red")
+
+@use "sass:color";
+
+@function color-channel($color, $channel-name) {
+  @return color.channel($color, $channel-name, $space: rgb);
+}

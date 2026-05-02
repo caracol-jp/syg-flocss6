@@ -1,0 +1,17 @@
+// テキスト背景に色を敷く（構造）
+// カスタムプロパティは派生側（syg-flocss6-import/config/component/_txt-box.scss）で設定
+
+@mixin c-txt-box($config) {
+  .c-txt-box {
+    padding-left: var(--c-txt-box--padding-left);
+    padding-right: var(--c-txt-box--padding-right);
+    background-image: linear-gradient(
+      transparent var(--c-txt-box--padding-top),
+      var(--c-txt-box--bgcolor) var(--c-txt-box--padding-top),
+      var(--c-txt-box--bgcolor) var(--c-txt-box--padding-bottom),
+      transparent var(--c-txt-box--padding-bottom)
+    );
+    box-decoration-break: clone;
+    color: var(--c-txt-box--color);
+  }
+}

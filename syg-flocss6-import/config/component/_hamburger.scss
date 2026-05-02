@@ -1,0 +1,96 @@
+// ハンバーガーメニュー
+// プロジェクト固有の設定と CSS カスタムプロパティ定義
+// 構造スタイルはコア側（node_modules/.../object/component/_hamburger.scss）で管理
+
+@use 'sass:map';
+
+// コンパイル時設定（コア側が参照）
+$hamburger: (
+  line: (
+    // 3 本線か 2 本線か（2 or 3）
+    count: 2,
+    // open 時の transform-origin
+    transform-origin-1: center center,
+    transform-origin-2: center center,
+    transform-origin-3: center center,
+  ),
+);
+
+@mixin c-hamburger($config) {
+  $mq: map.get($config, core, media-query);
+
+  .c-hamburger {
+    // デフォルトは非表示（下のメディアクエリで表示設定を行う）
+    --c-hamburger--display: none;
+  }
+
+  // tb-lo（縦画面タブレット・スマホ）
+  @media #{map.get($mq, tb-lo)} {
+    .c-hamburger {
+      position: fixed;
+      right: 5px;
+      top: 5px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      transition: 0.4s;
+
+      --c-hamburger--display: flex;
+      --c-hamburger--bg-normal: var(--root-color_red);
+      --c-hamburger--bg-hover: #000;
+      --c-hamburger--bg-open: #600;
+      --c-hamburger--shadow-normal: none;
+      --c-hamburger--shadow-hover: none;
+      --c-hamburger--shadow-open: none;
+
+      --c-hamburger__text--display: block;
+      --c-hamburger__text--bottom: 4px;
+      --c-hamburger__text--size: 9px;
+      --c-hamburger__text--color-normal: #fff;
+      --c-hamburger__text--color-hover: #f00;
+      --c-hamburger__text--color-open: #fff;
+
+      --c-hamburger__line--width: 29px;
+      --c-hamburger__line--height: 2px;
+      --c-hamburger__line--margin: 6px;
+      --c-hamburger__line--color-normal: #666;
+      --c-hamburger__line--color-hover: #f00;
+      --c-hamburger__line--color-open: #fff;
+    }
+  }
+
+  // // pc
+  // @media #{map.get($mq, pc)} {
+  //   .c-hamburger {
+  //     position: fixed;
+  //     right: 5px;
+  //     top: 5px;
+  //     width: 50px;
+  //     height: 50px;
+  //     border-radius: 50%;
+  //     transition: 0.4s;
+
+  //     --c-hamburger--display: flex;
+  //     --c-hamburger--bg-normal: var(--root-color_red);
+  //     --c-hamburger--bg-hover: #000;
+  //     --c-hamburger--bg-open: #600;
+  //     --c-hamburger--shadow-normal: none;
+  //     --c-hamburger--shadow-hover: none;
+  //     --c-hamburger--shadow-open: none;
+
+  //     --c-hamburger__text--display: block;
+  //     --c-hamburger__text--bottom: 4px;
+  //     --c-hamburger__text--size: 9px;
+  //     --c-hamburger__text--color-normal: #fff;
+  //     --c-hamburger__text--color-hover: #f00;
+  //     --c-hamburger__text--color-open: #fff;
+
+  //     --c-hamburger__line--width: 29px;
+  //     --c-hamburger__line--height: 2px;
+  //     --c-hamburger__line--margin: 6px;
+  //     --c-hamburger__line--color-normal: #666;
+  //     --c-hamburger__line--color-hover: #f00;
+  //     --c-hamburger__line--color-open: #fff;
+  //   }
+  // }
+}

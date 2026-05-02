@@ -1,0 +1,24 @@
+// ルビ設定
+// <span class="c-ruby" data-ruby="...">テキスト</span>
+// CSS カスタムプロパティ・モディファイは派生側（syg-flocss6-import/config/component/_ruby.scss）で設定
+
+@mixin c-ruby($config) {
+  .c-ruby {
+    position: relative;
+
+    &::after {
+      position: absolute;
+      left: 0;
+      top: var(--c-ruby--top);
+      width: 100%;
+      text-align: center;
+      text-indent: 0;
+      line-height: 1;
+      letter-spacing: var(--c-ruby--letter-spacing);
+      font-family: inherit;
+      font-size: var(--c-ruby--font-size);
+      word-break: keep-all;
+      content: attr(data-ruby);
+    }
+  }
+}

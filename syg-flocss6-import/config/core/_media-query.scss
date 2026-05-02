@@ -1,0 +1,18 @@
+// スクリーンブレイクポイント
+$media-tablet-width: 850px !default;
+$media-mobile-width: 550px !default;
+
+// メディアクエリー条件（@media 内で使う）
+// プロジェクト CSS や core 実装内で参照する
+$media-query: (
+  pc: '(min-width: #{$media-tablet-width + 0.02}), (orientation:landscape), print',
+  tb: '(orientation:portrait) and (min-width: #{$media-mobile-width + 0.02}) and (max-width: #{$media-tablet-width})',
+  tb-lo: '(orientation:portrait) and (max-width: #{$media-tablet-width})',
+  sp-up: '(min-width: #{$media-mobile-width + 0.02})',
+  sp: '(orientation:portrait) and (max-width: #{$media-mobile-width})',
+) !default;
+
+// クラス接頭辞として使うキーの部分集合
+// sp-up / tb-lo は pc+tb / tb+sp で代用できるため、冗長クラスの生成を避ける目的で除外
+// 例：.pc\:l-clm--2 .tb\:l-clm--2 .sp\:l-clm--2 のみ生成される
+$media-prefix: (pc, tb, sp) !default;

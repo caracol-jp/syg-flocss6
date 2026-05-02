@@ -1,0 +1,25 @@
+@use "fx" as *;
+@use "order" as *;
+@use "grid" as *;
+@use "clm" as *;
+@use "content" as *;
+@use "visual-data" as *;
+
+// コア側が参照する設定マップ
+$layout: (
+  fx: $fx,
+  order: $order,
+  grid: $grid,
+  clm: $clm,
+  content: $content,
+  visual-data: $visual-data,
+);
+
+// 派生の出力を集約する mixin
+// E-1 完了分の派生 mixin をここに列挙。出力順もここで制御する
+// $config を受け取り、必要なものだけ転送する
+@mixin layout-project($config) {
+  @include l-clm;
+  @include l-visual-data($config);
+  // 他の派生を E-1 完了次第、ここに追記していく
+}

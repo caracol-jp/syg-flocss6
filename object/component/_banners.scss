@@ -1,0 +1,25 @@
+// バナー一覧
+// justify-content は .l-jst-c_center などで指定する
+
+@use 'sass:map';
+
+// E-1: 出力は派生（syg-flocss6-import/config/component/_banners.scss）で行う
+@mixin c-banners($config) {
+  $mq: map.get($config, core, media-query);
+
+  .c-banners {
+    display: flex;
+    flex-direction: var(--c-banners--direction);
+    flex-wrap: wrap;
+    gap: var(--c-banners--gap);
+  }
+
+  .c-banners__link {
+    display: block;
+  }
+
+  .c-banners__image {
+    width: var(--c-banners--image-width);
+    height: var(--c-banners--image-height);
+  }
+}

@@ -1,0 +1,49 @@
+// .e-hover_xxx プロジェクト固有設定
+// ホバー/フォーカス/アクティブ時のスタイル変化を plain Sass で記述
+
+@use "sass:map";
+
+$hover: ();
+
+@mixin e-hover($config) {
+  $easing: map.get($config, core, easing);
+
+  // z-index
+  .e-hover_z-index {
+    &:hover,
+    &:active,
+    &:focus {
+      z-index: 1;
+    }
+  }
+
+  // fade
+  .e-hover_fade {
+    &:hover,
+    &:active,
+    &:focus {
+      opacity: 0.6;
+    }
+  }
+
+  // zoom
+  .e-hover_zoom {
+    transition: 0.4s #{map.get($easing, in-out-sine)};
+    will-change: transform;
+
+    &:hover,
+    &:active,
+    &:focus {
+      transform: scale(1.05);
+    }
+  }
+
+  // shadow
+  .e-hover_shadow {
+    &:hover,
+    &:active,
+    &:focus {
+      box-shadow: 0 0 30px 0 rgba(#000, 0.3);
+    }
+  }
+}

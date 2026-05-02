@@ -1,0 +1,80 @@
+// フォーム
+@use "sass:map";
+@use "../../method";
+
+@mixin c-form($config) {
+  $opt: map.get($config, component, form);
+
+  .c-form {
+    // ラベルとコントロールのセット
+    .c-form__fieldset {
+      display: flex;
+      margin-bottom: map.get($opt, fieldset-margin-bottom);
+      line-height: map.get($opt, line-height);
+
+      @media #{method.mq($config, pc)} {
+        flex-direction: column;
+      }
+    }
+
+    // ラベル
+    .c-form__label {
+      padding-top: calc(#{map.get($opt, input-padding)} + 1px);
+      flex: none;
+      width: map.get($opt, label-width);
+    }
+
+    // コントロールを入れる箱
+    .c-form__controls {
+      flex: 1;
+      // テキスト系 input が無い場合の padding。
+      // label と同様の設定
+      &.c-form__controls--padding {
+        padding-top: calc(#{map.get($opt, input-padding)} + 1px);
+      }
+    }
+
+    // 縦配置
+    .c-form--vertical {
+      .c-form__fieldset {
+        flex-wrap: wrap;
+      }
+
+      .c-form__label {
+        width: 100%;
+      }
+
+      .c-form__controls {
+        width: 100%;
+      }
+    }
+
+    // 個々のコントロール
+    .c-form__control {
+      margin-bottom: 0.5em;
+
+      // エラー状態
+      &.c-form__control--error {
+        border: map.get($opt, input-error-border);
+      }
+    }
+
+    // 必須事項や注釈
+    .c-form__notice {
+      font-size: map.get($opt, must-font-size);
+      color: map.get($opt, must-color);
+    }
+
+    // エラー表示
+    .c-form__errors {
+      font-size: var(--root-font-size_s1);
+
+      &:not(:empty) {
+        margin-bottom: map.get($opt, erross-margin);
+      }
+    }
+
+    .c-form__error {
+    }
+  }
+}

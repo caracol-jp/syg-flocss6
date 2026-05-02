@@ -1,0 +1,10 @@
+// word-break
+
+@mixin u-wb($config) {
+  .u-wb_keep-all {
+    word-break: keep-all;
+  }
+  .u-wb_break-all {
+    word-break: break-all;
+  }
+}

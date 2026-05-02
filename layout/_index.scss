@@ -1,0 +1,27 @@
+@use "fx" as *;
+@use "grid" as *;
+@use "gap" as *;
+@use "jst-c" as *;
+@use "jst-s" as *;
+@use "alg-i" as *;
+@use "alg-s" as *;
+@use "order" as *;
+@use "body-fit" as *;
+@use "clm" as *;
+@use "content" as *;
+@use "visual-data" as *;
+
+@mixin layout($config) {
+  @include l-fx($config);
+  @include l-grid($config);
+  @include l-gap($config);
+  @include l-jst-c($config);
+  @include l-jst-s($config);
+  @include l-alg-i($config);
+  @include l-alg-s($config);
+  @include l-order($config);
+  @include l-body-fit($config);
+  @include l-clm($config);
+  @include l-content($config);
+  @include l-visual-data($config);
+}

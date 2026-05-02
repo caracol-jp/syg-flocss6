@@ -1,0 +1,99 @@
+// コンテンツ枠
+// .l-content_w_n-pc width を指定
+// .l-content_p_n-sp 左右 padding を指定
+
+@use "sass:map";
+@use "../method";
+
+$vars: ();
+
+@mixin l-content($config) {
+  $opt: map.get($config, layout, content);
+
+  [class*="l-content_"] {
+    position: relative;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  // media 毎に作成
+  @each $media, $params in map.get($opt, media) {
+    @media #{method.mq($config, $media)} {
+      // width 指定がある時
+      @if map.has-key($params, width) {
+        @include _width("#{$media}\\:", map.get($params, width));
+      }
+      // padding 指定がある時
+      @if map.has-key($params, padding) {
+        @include _padding("#{$media}\\:", map.get($params, padding));
+      }
+      // margin 指定がある時
+      @if map.has-key($params, margin) {
+        @include _margin("#{$media}\\:", map.get($params, margin));
+      }
+      // min-width 指定がある時
+      @if map.has-key($params, min-width) {
+        @include _min("#{$media}\\:", map.get($params, min-width));
+      }
+      // max-width 指定がある時
+      @if map.has-key($params, max-width) {
+        @include _max("#{$media}\\:", map.get($params, max-width));
+      }
+      // 変数
+      @include _root($opt, $params);
+    }
+  }
+}
+
+// :root 変数生成
+@mixin _root($opt, $params) {
+  :root {
+    @each $type, $sizes in $params {
+      @each $size, $val in $sizes {
+        --root-content_#{$type}_#{$size}: #{$val};
+      }
+    }
+  }
+}
+// width タイプ生成
+@mixin _width($media, $param) {
+  @each $size, $val in $param {
+    .#{$media}l-content_w_#{$size} {
+      width: var(--root-content_width_#{$size});
+    }
+  }
+}
+// padding タイプ生成
+@mixin _padding($media, $param) {
+  @each $size, $val in $param {
+    .#{$media}l-content_p_#{$size} {
+      padding-left: var(--root-content_padding_#{$size});
+      padding-right: var(--root-content_padding_#{$size});
+    }
+  }
+}
+// margin タイプ生成
+@mixin _margin($media, $param) {
+  @each $size, $val in $param {
+    .#{$media}l-content_m_#{$size} {
+      margin-left: var(--root-content_margin_#{$size});
+      margin-right: var(--root-content_margin_#{$size});
+    }
+  }
+}
+// min-width / max-width タイプ生成
+@mixin _min($media, $param) {
+  @each $size, $val in $param {
+    .#{$media}l-content_min_#{$size} {
+      min-width: var(--root-content_min-width_#{$size});
+    }
+  }
+}
+@mixin _max($media, $param) {
+  @each $size, $val in $param {
+    .#{$media}l-content_max_#{$size} {
+      max-width: var(--root-content_max-width_#{$size});
+    }
+  }
+}

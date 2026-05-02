@@ -1,0 +1,19 @@
+// フレーム
+// .c-frame の構造スタイル
+// CSS カスタムプロパティのデフォルト値・モディファイは派生側（syg-flocss6-import/config/component/_frame.scss）で設定
+
+@mixin c-frame($config) {
+  .c-frame {
+    padding-left: var(--c-frame--padding-left);
+    padding-top: var(--c-frame--padding-top);
+    padding-right: var(--c-frame--padding-right);
+    padding-bottom: var(--c-frame--padding-bottom);
+    background: var(--c-frame--bg);
+    border: var(--c-frame--border);
+    border-radius: var(--c-frame--radius);
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

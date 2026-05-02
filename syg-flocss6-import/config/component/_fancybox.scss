@@ -1,0 +1,63 @@
+/* stylelint-disable */
+/* stylelint-disable */
+// ↑を書かないとコメントが消されてしまうので
+
+// fancybox の設定
+// プロジェクト固有の CSS カスタムプロパティ定義と値
+// 構造スタイルはコア側（node_modules/.../object/component/_fancybox.scss）で管理
+
+@use 'sass:map';
+
+
+@mixin fancybox($config) {
+  $mq: map.get($config, core, media-query);
+
+  // 親コンテナ
+  .fancybox__container {
+    --fancybox-zIndex: 1200;
+  }
+
+  // 背景
+  .fancybox__backdrop {
+    --fancybox-bg: rgba(255, 255, 255, 0.8);
+    background-image: none;
+    background-size: auto auto;
+    background-repeat: repeat;
+    background-attachment: scroll;
+  }
+
+  // コンテンツ
+  .fancybox__content {
+    --fancybox-content-bg: #fcf;
+    --fancybox-content-color: #000;
+  }
+
+  // youtube ポップアップサイズ
+  @media #{map.get($mq, sp-up)} {
+    .has-youtube .fancybox__content {
+      width: 900px !important;
+      height: auto !important;
+    }
+  }
+
+  // ajax ポップアップのサイズ
+  @media #{map.get($mq, sp-up)} {
+    .has-ajax .fancybox__content {
+      --fancybox-content-padding: 2rem;
+    }
+  }
+  @media #{map.get($mq, sp)} {
+    .has-ajax .fancybox__content {
+      --fancybox-content-padding: 1rem;
+    }
+  }
+
+  // ボタン
+  .f-button {
+    --fancybox-btn-font-size: 2rem;
+    --f-button-width: 2.5rem;
+    --f-button-height: 2.5rem;
+    --f-button-color: var(--root-font-color);
+    --f-button-hover-color: var(--root-color_red);
+  }
+}

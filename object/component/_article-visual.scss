@@ -1,0 +1,48 @@
+// .c-article-visual の構造スタイル
+// CSS カスタムプロパティのデフォルト値と item--wide / item--2 モディファイは
+// 派生側（syg-flocss6-import/config/component/_article-visual.scss）で設定
+
+@use "sass:map";
+
+@mixin c-article-visual($config) {
+  $mq: map.get($config, core, media-query);
+
+  .c-article-visual {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--c-article-visual--gap-y) var(--c-article-visual--gap-x);
+  }
+
+  .c-article-visual__item {
+    flex: none;
+    width: 100%;
+
+    @media #{map.get($mq, pc)} {
+      max-width: var(--c-article-visual--item-max-width-pc);
+    }
+    @media #{map.get($mq, tb)} {
+      max-width: var(--c-article-visual--item-max-width-tb);
+    }
+    @media #{map.get($mq, sp)} {
+      max-width: var(--c-article-visual--item-max-width-sp);
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .c-article-visual__caption {
+    display: block;
+    margin-top: var(--c-article-visual--caption-margin-top);
+    text-align: center;
+    line-height: var(--c-article-visual--caption-line-height);
+    font-size: var(--c-article-visual--caption-font-size);
+
+    &.c-article-visual__caption--red {
+      color: red;
+    }
+  }
+}

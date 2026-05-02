@@ -1,0 +1,17 @@
+// 縦の短いページでもフッターをページ最下部にぴったり付ける
+
+@use "sass:map";
+@use "../method";
+
+@mixin l-body-fit($config) {
+  .l-body-fit {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+  }
+
+  .l-body-fit__body {
+    flex: 1;
+  }
+}

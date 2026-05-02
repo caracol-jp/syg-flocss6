@@ -1,0 +1,90 @@
+// ソーシャルシェアボタン
+// <a class="c-share-btn c-share-btn--unity" data-share-service="twitter">
+// 構造はコア側（node_modules/.../object/component/_share-btn.scss）で管理
+
+@use 'sass:map';
+@use 'sass:color';
+
+// サービス毎の色定義
+$_colors: (
+  twitter: #1da1f2,
+  x: #0f1419,
+  facebook: #3b5998,
+  line: #00c300,
+  tiktok: #000,
+  instagram: #f13f79,
+  youtube: #ff0000,
+);
+
+
+@mixin c-share-btn($config) {
+  $mq: map.get($config, core, media-query);
+
+  .c-share-btn {
+    --c-share-btn--transition: 0.2s;
+    --c-share-btn--icon-margin: 0 -0.05em 0 0;
+    --c-share-btn--color: #fff;
+    --c-share-btn--border: none;
+    --c-share-btn--bg: #000;
+    --c-share-btn--color-hover: #fff;
+    --c-share-btn--border-hover: none;
+    --c-share-btn--bg-hover: #c00;
+  }
+
+  @media #{map.get($mq, pc)} {
+    .c-share-btn {
+      --c-share-btn--width: 35px;
+      --c-share-btn--height: 35px;
+      --c-share-btn--border-radius: 50%;
+      --c-share-btn--font-size: 18px;
+    }
+  }
+  @media #{map.get($mq, tb-lo)} {
+    .c-share-btn {
+      --c-share-btn--width: 40px;
+      --c-share-btn--height: 40px;
+      --c-share-btn--border-radius: 50%;
+      --c-share-btn--font-size: 20px;
+    }
+  }
+
+  // 全サービス統一の色
+  .c-share-btn.c-share-btn--unity {
+    --c-share-btn--color: #fff;
+    --c-share-btn--color-hover: #fff;
+    --c-share-btn--bg: #000;
+    --c-share-btn--bg-hover: #c44;
+    --c-share-btn--border: none;
+    --c-share-btn--border-hover: none;
+  }
+
+  // 背景がサービスの色
+  .c-share-btn.c-share-btn--bg-service {
+    --c-share-btn--color: #fff;
+    --c-share-btn--color-hover: #fff;
+    --c-share-btn--border: none;
+    --c-share-btn--border-hover: none;
+
+    @each $service, $clr in $_colors {
+      &[data-share-service='#{$service}'] {
+        --c-share-btn--bg: #{$clr};
+        --c-share-btn--bg-hover: #{color.scale($clr, $lightness: 20%)};
+      }
+    }
+  }
+
+  // アイコンがサービスの色
+  .c-share-btn.c-share-btn--icon-service {
+    --c-share-btn--bg: #fff;
+    --c-share-btn--bg-hover: #fff;
+    --c-share-btn--border: solid 1px #ccc;
+    --c-share-btn--border-hover: solid 1px #ccc;
+
+    @each $service, $clr in $_colors {
+      &[data-share-service='#{$service}'] {
+        --c-share-btn--color: #{$clr};
+        --c-share-btn--color-hover: #{color.scale($clr, $lightness: 20%)};
+      }
+    }
+  }
+}

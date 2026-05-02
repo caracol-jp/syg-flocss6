@@ -1,0 +1,11 @@
+// フォーム関連の設定
+
+$form: (
+  input-padding: 0.3em,
+  input-border: solid 1px #ccc,
+  input-radius: 4px,
+  input-shadow: "0.05em 0.05em 0.1em 0 rgba(0, 0, 0, 0.2) inset",
+  input-shadow-focus: "0 0 0 0.2em rgba(#67d2ff, 0.5), 0.05em 0.05em 0.1em 0 rgba(0, 0, 0, 0.2) inset",
+  input-line-height: 1.4,
+  input-placeholder-color: #ccc
+) !default;

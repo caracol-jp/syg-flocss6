@@ -1,0 +1,40 @@
+// <ul class="c-list-ul">
+// プロジェクト固有の CSS カスタムプロパティ定義とモディファイ
+// 構造スタイルはコア側（node_modules/.../object/component/_list-ul.scss）で管理
+
+
+@mixin c-list-ul($config) {
+  .c-list-ul {
+    --c-list-ul--padding-left: 2em;
+    --c-list-ul--line-height: var(--root-line-height);
+    --c-list-ul__li--margin-top: var(--root-spacer_s3);
+    --c-list-ul__li--style-type: disc;
+    --c-list-ul__li-before--position: absolute;
+    --c-list-ul__li-before--left: 0;
+    --c-list-ul__li-before--top: -0.1em;
+    --c-list-ul__li-before--width: 1.5em;
+    --c-list-ul__li-before--color: inherit;
+    --c-list-ul__li-before--text-align: right;
+    --c-list-ul__li-before--font-size: 1em;
+    --c-list-ul__li-before--font-family: arrows;
+    --c-list-ul__li-marker--color: red;
+  }
+
+  // circle モディファイ
+  .c-list-ul.c-list-ul--circle {
+    --c-list-ul__li--style-type: circle;
+    --c-list-ul__li-before--color: var(--root-color_red);
+  }
+
+  // mark モディファイ（アイコンを li::before に表示）
+  .c-list-ul.c-list-ul--mark {
+    --c-list-ul--padding-left: 0;
+    --c-list-ul__li--margin-top: var(--root-spacer_s3);
+    --c-list-ul__li--padding-left: 2em;
+    --c-list-ul__li--style-type: none;
+    --c-list-ul__li-before--color: var(--root-color_red);
+  }
+  .c-list-ul.c-list-ul--mark li::before {
+    content: "\e98a";
+  }
+}

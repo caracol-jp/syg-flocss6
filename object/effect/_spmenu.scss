@@ -1,0 +1,21 @@
+// e-spmenu コア
+// 派生バリアントが `$spmenu.media`（メディアキーの list）を公開する
+// それを読んで `.e-spmenu__content` の共通ベースを有効メディア内でのみ出力する
+
+@use "sass:map";
+@use "../../method";
+
+@mixin e-spmenu($config) {
+  $media-list: map.get($config, effect, spmenu, media);
+
+  @each $media in $media-list {
+    @media #{method.mq($config, $media)} {
+      .e-spmenu__content {
+        z-index: map.get($config, core, z-index, spmenu);
+        position: fixed;
+        overflow: hidden;
+        -webkit-overflow-scrolling: touch;
+      }
+    }
+  }
+}

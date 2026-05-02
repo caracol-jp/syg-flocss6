@@ -1,0 +1,12 @@
+// line-height
+
+@use "sass:map";
+@use "../../method";
+
+@mixin u-lh($config) {
+  @each $size, $val in map.get($config, core, line-height) {
+    .u-lh_#{$size} {
+      line-height: var(--root-line-height_#{$size});
+    }
+  }
+}

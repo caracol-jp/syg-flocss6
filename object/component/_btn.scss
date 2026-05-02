@@ -1,0 +1,128 @@
+// ボタン
+// .c-btn の構造スタイル
+// CSS カスタムプロパティのデフォルト値およびモディファイ（pad_*, next, prev, bg-black）は
+// 派生側（syg-flocss6-import/config/component/_btn.scss）で設定
+
+@use 'sass:map';
+
+// hover/active/focus で共通適用するスタイル
+@mixin _c-btn-hover {
+  background: var(--c-btn--bg-hover);
+  color: var(--c-btn--color-hover);
+
+  &::before,
+  &::after {
+    color: var(--c-btn--icon-color-hover);
+  }
+}
+
+@mixin c-btn($config) {
+  .c-btn {
+    // ボタンとして最低限必要な設定（v5 の btn-common 相当）
+    position: relative;
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    text-decoration: none;
+    user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    text-align: center;
+    appearance: none;
+    cursor: pointer;
+
+    // デフォルト
+    line-height: 1.3;
+    font-weight: bold;
+    padding: var(--c-btn--padding);
+    background: var(--c-btn--bg);
+    border: var(--c-btn--border);
+    border-radius: var(--c-btn--radius);
+    color: var(--c-btn--color);
+    font-size: var(--c-btn--font-size);
+    transition: var(--c-btn--transition);
+
+    &::before {
+      color: var(--c-btn--icon-color);
+    }
+    &::after {
+      color: var(--c-btn--icon-color);
+    }
+
+    // hover 非対応デバイス（タッチ等）は :hover を発火させない
+    @media (hover: hover) {
+      &:hover {
+        @include _c-btn-hover;
+      }
+    }
+
+    // :active / :focus / 状態クラスは常時有効
+    &:active,
+    &:focus,
+    &.router-link-active,
+    &[data-active="true"] {
+      @include _c-btn-hover;
+    }
+
+    // 無効（disabled="disabled"）
+    &[disabled="disabled"] {
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    // next アイコン（::after 位置・内容）
+    &.c-btn--next::after {
+      position: var(--c-btn--next-position);
+      right: var(--c-btn--next-right);
+      top: var(--c-btn--next-top);
+      font-family: var(--c-btn--next-family);
+      font-size: var(--c-btn--next-size);
+      transition: 0.3s;
+      content: var(--c-btn--next-content);
+    }
+    @media (hover: hover) {
+      &.c-btn--next:hover::after {
+        translate: var(--c-btn--next-translate);
+      }
+    }
+    &.c-btn--next:active::after,
+    &.c-btn--next:focus::after {
+      translate: var(--c-btn--next-translate);
+    }
+
+    // prev アイコン（::after 位置・内容）
+    &.c-btn--prev::after {
+      position: var(--c-btn--prev-position);
+      left: var(--c-btn--prev-left);
+      top: var(--c-btn--prev-top);
+      font-family: var(--c-btn--prev-family);
+      font-size: var(--c-btn--prev-size);
+      transition: 0.3s;
+      content: var(--c-btn--prev-content);
+    }
+    @media (hover: hover) {
+      &.c-btn--prev:hover::after {
+        translate: var(--c-btn--prev-translate);
+      }
+    }
+    &.c-btn--prev:active::after,
+    &.c-btn--prev:focus::after {
+      translate: var(--c-btn--prev-translate);
+    }
+  }
+
+  // 無効ボタン（[disabled]）の構造部分
+  .c-btn[disabled] {
+    pointer-events: none;
+    opacity: 0.7;
+  }
+
+  // 最小幅
+  .c-btn.c-btn--min_200 {
+    min-width: min(200px, 100%);
+  }
+
+  .c-btn.c-btn--min_300 {
+    min-width: min(300px, 100%);
+  }
+}

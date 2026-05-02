@@ -1,0 +1,88 @@
+// e-spmenu バリアント: popup
+// 中央にスケール表示するポップアップメニュー
+// メディアクエリごとに自由に設定を追加できる（pc / tb / tb-lo など）
+
+@use 'sass:map';
+
+// このバリアントが有効なメディアキーのリスト
+// コアはこれを読んで `.e-spmenu__content` のベースを対応メディア内に出力する
+// pc でも表示する場合は下記に `pc` を追加する
+$spmenu: (
+  media: (
+    tb-lo,
+    pc,
+  ),
+);
+
+@mixin e-spmenu($config) {
+  $mq: map.get($config, core, media-query);
+  $easing: map.get($config, core, easing);
+
+  ///////////////////////////////////
+  // tb-lo（縦画面タブレット・スマホ）
+  @media #{map.get($mq, tb-lo)} {
+    .e-spmenu__content {
+      width: 100vw;
+      height: 100vh;
+      left: 0;
+      top: 0;
+    }
+
+    .e-spmenu[data-spmenu='init'] .e-spmenu__content {
+      height: 0;
+      opacity: 0;
+    }
+
+    .e-spmenu[data-spmenu='open'] .e-spmenu__content {
+      animation-name: tb-lo\:e-spmenu-open;
+      animation-fill-mode: forwards;
+      animation-duration: 0.2s;
+      animation-timing-function: #{map.get($easing, out-quad)};
+    }
+
+    .e-spmenu[data-spmenu='close'] .e-spmenu__content {
+      animation-name: tb-lo\:e-spmenu-close;
+      animation-fill-mode: forwards;
+      animation-duration: 0.2s;
+      animation-timing-function: #{map.get($easing, out-quad)};
+    }
+  }
+
+  ///////////////////////////////////
+  // pc（必要に応じてこのブロックに PC 用の挙動を追加する）
+  // @media #{map.get($mq, pc)} {
+  //   ...
+  // }
+
+  ///////////////////////////////////
+  // keyframes
+  @keyframes tb-lo\:e-spmenu-open {
+    0% {
+      height: 100%;
+      opacity: 0;
+      transform: scale3d(0.9, 0.9, 1);
+    }
+    100% {
+      height: 100%;
+      opacity: 1;
+      transform: scale3d(1, 1, 1);
+    }
+  }
+
+  @keyframes tb-lo\:e-spmenu-close {
+    0% {
+      height: 100%;
+      transform: scale3d(1, 1, 1);
+      opacity: 1;
+    }
+    99% {
+      height: 100%;
+      transform: scale3d(0.9, 0.9, 1);
+      opacity: 0;
+    }
+    100% {
+      height: 0;
+      opacity: 0;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+// <ul> <ol> <dl> 全リスト共通の余白設定
+// コア側の list-common mixin が参照するカスタムプロパティを定義
+
+
+@mixin c-list-common($config) {
+  .c-list-ul,
+  .c-list-ol,
+  .c-list-dl {
+    --c-list-common--margin-top: 0;
+    --c-list-common--margin-bottom: 1em;
+  }
+}

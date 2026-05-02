@@ -1,0 +1,11 @@
+@use "sass:map";
+
+@mixin font-family($config, $name, $important: "") {
+  $font: map.get($config, core, font-family, $name);
+
+  font-family: #{map.get($font, family) $important};
+
+  @if map.get($font, weight) {
+    font-weight: #{map.get($font, weight) $important};
+  }
+}

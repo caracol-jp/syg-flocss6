@@ -1,0 +1,25 @@
+// font-size
+@use "sass:map";
+@use "../../method";
+
+@mixin u-ft-sz($config) {
+  // 全環境対応フォントサイズ
+  @each $size, $val in map.get($config, core, font-size, pc) {
+    @include _u-ft-sz($size);
+  }
+
+  // メディアクエリー対応フォントサイズ
+  @each $media in map.get($config, core, media-prefix) {
+    @media #{method.mq($config, $media)} {
+      @each $size, $val in map.get($config, core, font-size, $media) {
+        @include _u-ft-sz($size, "#{$media}\\:");
+      }
+    }
+  }
+}
+
+@mixin _u-ft-sz($size, $media: "") {
+  .#{$media}u-ft-sz_#{$size} {
+    font-size: var(--root-font-size_#{"" + $size});
+  }
+}

@@ -1,0 +1,32 @@
+@use 'media-query' as *;
+@use 'base' as *;
+@use 'font-size' as *;
+@use 'font-family' as *;
+@use 'spacer' as *;
+@use 'line-height' as *;
+@use 'letter-spacing' as *;
+@use 'min' as *;
+@use 'max' as *;
+@use 'width' as *;
+@use 'color' as *;
+@use 'z-index' as *;
+@use 'easing' as *;
+@use 'form' as *;
+
+$core: (
+  media-query: $media-query,
+  media-prefix: $media-prefix,
+  base: $base,
+  font-size: $font-size,
+  font-family: $font-family,
+  spacer: $spacer,
+  line-height: $line-height,
+  letter-spacing: $letter-spacing,
+  min: $min,
+  max: $max,
+  width: $width,
+  color: $color,
+  z-index: $z-index,
+  easing: $easing,
+  form: $form,
+);

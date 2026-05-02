@@ -1,0 +1,71 @@
+// display grid
+
+@use "sass:map";
+@use "../method";
+
+@mixin l-grid($config) {
+  // クラス接頭辞に使うメディアキー（pc / tb / sp）
+  $media-prefix: map.get($config, core, media-prefix);
+  // 最大分割数
+  $max-columns: map.get($config, layout, grid, max-columns);
+
+  .l-grid {
+    display: grid;
+    grid-template-columns: repeat(var(--l-grid--divide, 1), 1fr);
+    column-gap: var(--l-gap-x, 0px);
+    row-gap: var(--l-gap-y, 0px);
+  }
+
+  // 分割数
+  // <section class="l-grid l-grid--2-pc l-grid--2-sp">
+  @include _l-grid--devide($max-columns);
+
+  @each $media in $media-prefix {
+    @media #{method.mq($config, $media)} {
+      @include _l-grid--devide($max-columns, "#{$media}\\:");
+    }
+  }
+
+  //////////////////////////
+  // セル
+  // [class*="l-grid__span_"] {
+  //   grid-column: span var(--l-grid__span, 1);
+  // }
+  [class*="l-grid__span_"],
+  [class*="l-grid__start_"] {
+    grid-column: var(--l-grid__start, auto) / span var(--l-grid__span, 1);
+  }
+
+  // セルの開始、終了、幅を個別指定
+  // <section class="l-grid l-grid--2"><div class="l-grid__start_2">
+  @include _l-grid__item($max-columns);
+
+  @each $media in $media-prefix {
+    @media #{method.mq($config, $media)} {
+      @include _l-grid__item($max-columns, "#{$media}\\:");
+    }
+  }
+}
+
+/////////////////////////
+// 分割数
+@mixin _l-grid--devide($max-columns, $media: "") {
+  @for $divide from 1 through $max-columns {
+    .l-grid.#{$media}l-grid--#{$divide} {
+      --l-grid--divide: #{$divide};
+    }
+  }
+}
+
+/////////////////////////
+// セルの開始・終了・幅を個別指定
+@mixin _l-grid__item($max-columns, $media: "") {
+  @for $divide from 1 through $max-columns {
+    .#{$media}l-grid__start_#{$divide} {
+      --l-grid__start: #{$divide};
+    }
+    .#{$media}l-grid__span_#{$divide} {
+      --l-grid__span: #{$divide};
+    }
+  }
+}

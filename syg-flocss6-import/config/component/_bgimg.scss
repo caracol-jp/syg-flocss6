@@ -1,0 +1,42 @@
+// #{ ←これがファイル先頭にあるとリスト全てにカンマが付く
+
+// 画像を背景にしいたもの
+// <span class="c-bgimg c-bgimg--1x1" style="background-image:url(〜)"></span>
+@use "sass:math";
+
+
+@mixin c-bgimg($config) {
+  .c-bgimg {
+    display: block;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .c-bgimg.c-bgimg--contain {
+    background-size: contain;
+  }
+  .c-bgimg.c-bgimg--1x1 {
+    padding-top: 100%;
+  }
+  .c-bgimg.c-bgimg--4x3 {
+    padding-top: #{math.div(3, 4) * 100%};
+  }
+  .c-bgimg.c-bgimg--16x9 {
+    padding-top: 56.25%;
+  }
+  .c-bgimg.c-bgimg--cd {
+    padding-top: 100%;
+  }
+  .c-bgimg.c-bgimg--bd {
+    padding-top: #{math.div(800, 600) * 100%};
+  }
+  .c-bgimg.c-bgimg--b6 {
+    padding-top: 142%;
+  }
+  .c-bgimg.c-bgimg--border {
+    border: solid 1px rgba(#000, 0.2);
+  }
+  .c-bgimg.c-bgimg--border-shadow {
+    box-shadow: 0 0 0 1px rgba(#000, 0.2);
+  }
+}

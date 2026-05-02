@@ -1,0 +1,26 @@
+// fancybox で使う設定
+// .fancybox__* / .f-button の構造スタイル
+// CSS カスタムプロパティ定義・プロジェクト固有値は派生側（syg-flocss6-import/config/component/_fancybox.scss）で設定
+
+@mixin fancybox($config) {
+  // スクロールラッパー（fancybox デフォルトの padding を打ち消し）
+  .fancybox__slide {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  // コンテンツ
+  .fancybox__content {
+    padding: var(--fancybox-content-padding);
+  }
+
+  // youtube 用
+  .has-youtube .fancybox__content {
+    max-width: 100vw;
+  }
+
+  // ボタン
+  .f-button {
+    font-size: var(--fancybox-btn-font-size);
+  }
+}

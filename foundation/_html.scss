@@ -1,0 +1,17 @@
+@use "sass:map";
+@use "../method";
+
+@mixin html($config) {
+  html {
+    // フォントサイズ
+    @media #{method.mq($config, pc)} {
+      font-size: #{map.get($config, core, base, font-size, pc)};
+    }
+    @media #{method.mq($config, tb)} {
+      font-size: #{map.get($config, core, base, font-size, tb)};
+    }
+    @media #{method.mq($config, sp)} {
+      font-size: #{map.get($config, core, base, font-size, sp)};
+    }
+  }
+}

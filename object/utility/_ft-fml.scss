@@ -1,0 +1,12 @@
+// font-family
+
+@use "sass:map";
+@use "../../method";
+
+@mixin u-ft-fml($config) {
+  @each $name, $font in map.get($config, core, font-family) {
+    .u-ft-fml_#{$name} {
+      @include method.font-family($config, $name);
+    }
+  }
+}

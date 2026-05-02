@@ -1,0 +1,99 @@
+// <table class="c-table"> 構造
+// カスタムプロパティ・モディファイ値は派生側（syg-flocss6-import/config/component/_table.scss）で設定
+
+@use 'sass:map';
+
+@mixin c-table($config) {
+  $mq: map.get($config, core, media-query);
+
+  .c-table {
+    border-collapse: collapse;
+    border-top: var(--c-table--border-top);
+    border-bottom: var(--c-table--border-bottom);
+    border-left: var(--c-table--border-left);
+    border-right: var(--c-table--border-right);
+
+    thead {
+      border-top: var(--c-table__thead--border-top);
+      border-bottom: var(--c-table__thead--border-bottom);
+      border-right: var(--c-table__thead--border-right);
+      border-left: var(--c-table__thead--border-left);
+      background: var(--c-table__thead--bg);
+      color: var(--c-table__thead--color);
+
+      th {
+        text-align: var(--c-table__thead-th--text-align, var(--c-table__th--text-align));
+      }
+    }
+
+    tr {
+      border-top: var(--c-table__tr--border-top);
+      border-bottom: var(--c-table__tr--border-bottom);
+      border-right: var(--c-table__tr--border-right);
+      border-left: var(--c-table__tr--border-left);
+      background: var(--c-table__tr--bg);
+      color: var(--c-table__tr--color);
+    }
+
+    th {
+      padding: var(--c-table__th--padding);
+      background: var(--c-table__th--bg);
+      color: var(--c-table__th--color);
+      font-family: var(--c-table__th--font-family);
+      font-weight: var(--c-table__th--font-weight);
+      text-align: var(--c-table__th--text-align);
+    }
+
+    td {
+      padding: var(--c-table__td--padding);
+      background: var(--c-table__td--bg);
+      border: none;
+      color: var(--c-table__td--color);
+      font-weight: normal;
+      text-align: var(--c-table__td--text-align);
+
+      *:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  // 横にはみ出たらスクロール
+  .c-table.c-table--scroll-x {
+    @media #{map.get($mq, tb-lo)} {
+      display: block;
+      max-width: 100%;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+  }
+
+  // 左端の <th> をスクロールさせない
+  .c-table.c-table--sticky-left {
+    tbody {
+      th {
+        position: sticky;
+        left: 0;
+      }
+    }
+  }
+
+  // nowrap（B-9: $media-prefix で 3 種のみ展開）
+  $prefix: map.get($config, core, media-prefix);
+
+  @include _c-table--nowrap($config);
+
+  @each $media in $prefix {
+    @media #{map.get($mq, $media)} {
+      @include _c-table--nowrap($config, #{$media + "\\:"});
+    }
+  }
+}
+
+@mixin _c-table--nowrap($config, $media: "") {
+  .c-table.#{$media}c-table--th-nowrap {
+    th {
+      white-space: nowrap;
+    }
+  }
+}

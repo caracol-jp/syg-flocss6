@@ -1,0 +1,30 @@
+// キャプション
+// <figcaption class="c-caption">キャプション</figcaption>
+// プロジェクト固有の CSS カスタムプロパティ定義とカスタムプロパティのみ設定するモディファイ
+// 構造スタイルはコア側（node_modules/.../object/component/_caption.scss）で管理
+
+
+@mixin c-caption($config) {
+  .c-caption {
+    --c-caption--text-align: center;
+    --c-caption--bg: transparent;
+    --c-caption--font-size: var(--root-font-size_s1);
+    --c-caption--color: #000;
+  }
+
+  // movie-title モディファイのカスタムプロパティ上書き
+  // movie-title モディファイの構造部分
+  .c-caption.c-caption--movie-title {
+    --c-caption--bg: rgba(0, 0, 0, 0.4);
+    --c-caption--color: #fff;
+    --c-caption--text-align: left;
+
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    margin-bottom: 0;
+    padding: 0.2em 0.2em 0.2em 1em;
+    text-shadow: 0 0 4px #000, 0 0 8px #000;
+  }
+}

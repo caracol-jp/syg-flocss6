@@ -1,0 +1,49 @@
+// <ul> の構造スタイル
+// CSS カスタムプロパティの定義とモディファイは派生側（syg-flocss6-import/config/component/_list-ul.scss）で設定
+
+@use "list-common";
+
+@mixin c-list-ul($config) {
+  // 普通のリスト
+  // <ul class="c-list-ul">
+  .c-list-ul {
+    @include list-ul-basic($config);
+    @include list-ul-li-basic($config);
+  }
+}
+
+// Wordpress では class を付けない <ul> のまま使うので、
+// 使い回せるように基本部分を mixin に切り出す
+@mixin list-ul-basic($config) {
+  @include list-common.list-common($config);
+
+  padding-left: var(--c-list-ul--padding-left);
+  line-height: var(--c-list-ul--line-height);
+}
+
+@mixin list-ul-li-basic($config) {
+  > li {
+    position: relative;
+    list-style-type: var(--c-list-ul__li--style-type);
+    padding-left: var(--c-list-ul__li--padding-left);
+
+    &::marker {
+      color: var(--c-list-ul__li--marker-color);
+    }
+
+    + li {
+      margin-top: var(--c-list-ul__li--margin-top);
+    }
+
+    &::before {
+      position: var(--c-list-ul__li-before--position);
+      left: var(--c-list-ul__li-before--left);
+      top: var(--c-list-ul__li-before--top);
+      width: var(--c-list-ul__li-before--width);
+      color: var(--c-list-ul__li-before--color);
+      text-align: var(--c-list-ul__li-before--text-align);
+      font-size: var(--c-list-ul__li-before--font-size);
+      font-family: var(--c-list-ul__li-before--font-family);
+    }
+  }
+}

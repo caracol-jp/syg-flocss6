@@ -1,0 +1,25 @@
+// 並び順
+// <div class="l-fx__item l-order_1">
+@use "sass:map";
+@use "../method";
+
+@mixin l-order($config) {
+  @include _l-order($config);
+
+  @each $media in map.get($config, core, media-prefix) {
+    @media #{method.mq($config, $media)} {
+      @include _l-order($config, "#{$media}\\:");
+    }
+  }
+}
+
+@mixin _l-order($config, $media: "") {
+  $start: map.get($config, layout, order, start);
+  $last: map.get($config, layout, order, last);
+
+  @for $i from $start through $last {
+    .#{$media}l-order_#{$i} {
+      order: $i;
+    }
+  }
+}

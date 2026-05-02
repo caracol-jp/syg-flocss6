@@ -1,0 +1,22 @@
+// 行間罫線
+// 通常線:
+//   <div class="c-rule-line c-rule-line--solid">てきすと</div>
+// 破線:
+//   <div style="position:relative">
+//     <span class="c-rule-line c-rule-line--absolute c-rule-line--dash">てきすと</span>
+//   </div>
+
+
+@mixin c-rule-line($config) {
+  .c-rule-line {
+    --c-rule-line--line-height: calc(var(--root-line-height_l1) * 1em);
+    --c-rule-line--line-width: 1px;
+    --c-rule-line--line-color: #000;
+  }
+
+  // dash モディファイのカスタムプロパティ
+  .c-rule-line.c-rule-line--dash {
+    --c-rule-line--dash-width: 3px;
+    --c-rule-line--dash-margin: 6px;
+  }
+}

@@ -1,0 +1,17 @@
+// .e-shadow_xxx プロジェクト固有設定
+// 影を付与するクラス。hover 時だけ付与するのは .e-hover で設定する
+
+$shadow: ();
+
+@mixin e-shadow($config) {
+  .e-shadow_thumb {
+    box-shadow: 0 0 2rem 0 rgba(#000, 0.2);
+    transition: 0.3s box-shadow;
+
+    &:hover,
+    &:active,
+    &:focus {
+      box-shadow: 0 0 3rem 0.5rem rgba(#000, 0.5);
+    }
+  }
+}

@@ -1,0 +1,34 @@
+@use "sass:map";
+@use "../method";
+
+@mixin l-jst-s($config) {
+  @include _l-jst-s;
+
+  @each $media in map.get($config, core, media-prefix) {
+    @media #{method.mq($config, $media)} {
+      @include _l-jst-s("#{$media}\\:");
+    }
+  }
+}
+
+@mixin _l-jst-s($media: "") {
+  .#{$media}l-jst-s_center {
+    justify-self: center;
+  }
+
+  .#{$media}l-jst-s_start {
+    justify-self: flex-start;
+  }
+
+  .#{$media}l-jst-s_end {
+    justify-self: flex-end;
+  }
+
+  .#{$media}l-jst-s_between {
+    justify-self: space-between;
+  }
+
+  .#{$media}l-jst-s_around {
+    justify-self: space-around;
+  }
+}

@@ -1,0 +1,33 @@
+@use "ft-sz" as *;
+@use "ft-fml" as *;
+@use "mg" as *;
+@use "pd" as *;
+@use "ir" as *;
+@use "lh" as *;
+@use "ls" as *;
+@use "min" as *;
+@use "max" as *;
+@use "w" as *;
+@use "cl" as *;
+@use "bc" as *;
+@use "dsp" as *;
+@use "wb" as *;
+@use "txt" as *;
+
+@mixin utility($config) {
+  @include u-ft-sz($config);
+  @include u-ft-fml($config);
+  @include u-mg($config);
+  @include u-pd($config);
+  @include u-ir($config);
+  @include u-lh($config);
+  @include u-ls($config);
+  @include u-min($config);
+  @include u-max($config);
+  @include u-w($config);
+  @include u-cl($config);
+  @include u-bc($config);
+  @include u-dsp($config);
+  @include u-wb($config);
+  @include u-txt($config);
+}

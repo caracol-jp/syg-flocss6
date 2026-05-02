@@ -1,0 +1,25 @@
+// letter-spacing
+
+@use 'sass:map';
+@use '../../method';
+
+@mixin u-ls($config) {
+  @each $size, $val in map.get($config, core, letter-spacing) {
+    @include _u-ls($size, $val);
+  }
+
+  // letter-spacing はメディア別に変えることがないと思うのでひとまずコメントアウト
+  // @each $media in map.get($config, core, media-prefix) {
+  //   @media #{method.mq($config, $media)} {
+  //     @each $size, $val in map.get($config, core, letter-spacing) {
+  //       @include _u-ls($size, $val, "#{$media}\\:");
+  //     }
+  //   }
+  // }
+}
+
+@mixin _u-ls($size, $val, $media: '') {
+  .#{$media}u-ls_#{$size} {
+    letter-spacing: var(--root-letter-spacing_#{$size});
+  }
+}

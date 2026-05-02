@@ -1,0 +1,32 @@
+// .l-clm プロジェクト固有設定
+// - $clm: コア側が参照するパラメータ（分割数など）
+// - @mixin l-clm: プロジェクト固有スタイル（出力順は layout/_index.scss で制御）
+
+$clm: (
+  devide: 3,
+);
+
+@mixin l-clm {
+  .l-clm {
+    // デフォルト値
+    --l-clm-gap: var(--root-spacer_l3);
+
+    // モディファイ: gap
+    &.l-clm--gap_n {
+      --l-clm-gap: var(--root-spacer_n);
+    }
+
+    &.l-clm--gap_l5 {
+      --l-clm-gap: var(--root-spacer_l5);
+    }
+
+    // モディファイ: column-rule
+    &.l-clm--rule_solid1 {
+      column-rule: solid 1px var(--root-color_gray);
+    }
+
+    &.l-clm--rule_dot2 {
+      column-rule: dotted 2px var(--root-color_gray);
+    }
+  }
+}

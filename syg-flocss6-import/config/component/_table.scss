@@ -1,0 +1,125 @@
+// <table class="c-table">
+// プロジェクト固有の CSS カスタムプロパティとモディファイ
+// 構造はコア側（node_modules/.../object/component/_table.scss）で管理
+
+
+@mixin c-table($config) {
+  .c-table {
+    margin-bottom: 1rem;
+    // 全体の枠線
+    --c-table--border-top: none;
+    --c-table--border-bottom: none;
+    --c-table--border-left: none;
+    --c-table--border-right: none;
+    // 見出し行の枠線と色
+    --c-table__thead--border-top: none;
+    --c-table__thead--border-bottom: none;
+    --c-table__thead--border-right: none;
+    --c-table__thead--border-left: none;
+    --c-table__thead--bg: transparent;
+    --c-table__thead--color: inherit;
+    // データ行の枠線と色
+    --c-table__tr--border-top: none;
+    --c-table__tr--border-bottom: none;
+    --c-table__tr--border-right: none;
+    --c-table__tr--border-left: none;
+    --c-table__tr--bg: transparent;
+    --c-table__tr--color: inherit;
+    // ヘッダセル
+    --c-table__th--padding: 0.2em 0.5em;
+    --c-table__th--bg: transparent;
+    --c-table__th--color: inherit;
+    --c-table__th--font-family: inherit;
+    --c-table__th--font-weight: 400;
+    --c-table__th--text-align: right;
+    // データセル
+    --c-table__td--padding: 0.2em 0.5em;
+    --c-table__td--text-align: left;
+    --c-table__td--color: inherit;
+  }
+
+  // padding
+  .c-table.c-table--pad_l1 {
+    --c-table__th--padding: 0.4em 0.5em;
+    --c-table__td--padding: 0.4em 0.5em;
+  }
+
+  // th 太字
+  .c-table.c-table--th-bold {
+    --c-table__th--font-weight: 700;
+  }
+
+  // th 色付き
+  .c-table.c-table--th-color {
+    --c-table__th--bg: #333;
+    --c-table__th--color: #fff;
+  }
+
+  // thead の th をセンタリング
+  .c-table.c-table--thead-th_center {
+    --c-table__thead-th--text-align: center;
+  }
+
+  // wrap border
+  .c-table.c-table--wrap-border {
+    --c-table--border-top: solid 1px #000;
+    --c-table--border-bottom: solid 1px #000;
+    --c-table--border-right: none;
+    --c-table--border-left: none;
+  }
+
+  // tr border
+  .c-table.c-table--tr-border {
+    --c-table__tr--border-top: solid 1px #eee;
+    --c-table__tr--border-bottom: solid 1px #ccc;
+    --c-table__tr--border-right: none;
+    --c-table__tr--border-left: none;
+  }
+
+  // thead border
+  .c-table.c-table--thead-border {
+    --c-table__thead--border-bottom: solid 1px #333;
+  }
+
+  // thead 色付き
+  .c-table.c-table--thead-color {
+    --c-table__thead--bg: #eee;
+    --c-table__thead--color: var(--root-font-color);
+  }
+
+  // 交互に色分け：縦方向
+  .c-table.c-table--stripe-v tbody {
+    tr:nth-child(odd) {
+      --c-table__tr--bg: #ffbfbfcc;
+      --c-table__tr--color: inherit;
+    }
+    tr:nth-child(even) {
+      --c-table__tr--bg: #f0bbaf;
+      --c-table__tr--color: inherit;
+    }
+  }
+
+  // 交互に色分け：横方向
+  .c-table.c-table--stripe-h {
+    thead {
+      th:nth-child(odd) {
+        --c-table__th--bg: #f88;
+        --c-table__th--color: #fff;
+      }
+      th:nth-child(even) {
+        --c-table__th--bg: #c66;
+        --c-table__th--color: #fff;
+      }
+    }
+    tbody {
+      td:nth-child(odd) {
+        --c-table__td--bg: #fff;
+        --c-table__td--color: var(--root-font-color);
+      }
+      td:nth-child(even) {
+        --c-table__td--bg: #eee;
+        --c-table__td--color: var(--root-font-color);
+      }
+    }
+  }
+}

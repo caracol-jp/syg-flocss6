@@ -1,0 +1,24 @@
+@use 'hover' as *;
+@use 'shadow' as *;
+@use 'iv' as *;
+@use 'v-transition' as *;
+@use 'spmenu' as *;
+
+// コア側が参照する設定マップ
+$effect: (
+  hover: $hover,
+  shadow: $shadow,
+  iv: $iv,
+  v-transition: $v-transition,
+  spmenu: $spmenu,
+);
+
+// 派生の出力を集約する mixin
+// 出力順もここで制御する
+@mixin effect-project($config) {
+  @include e-hover($config);
+  @include e-shadow($config);
+  @include e-v-transition($config);
+  @include e-iv($config);
+  @include e-spmenu($config);
+}

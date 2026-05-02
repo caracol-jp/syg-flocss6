@@ -1,0 +1,22 @@
+// ページ上部に戻るボタン
+// <a class="c-return-up">
+// プロジェクト固有スタイルは派生側（syg-flocss6-import/config/component/_return-up.scss）で設定
+
+@use 'sass:map';
+
+@mixin c-return-up($config) {
+  $z: map.get($config, core, z-index, return-up);
+
+  .c-return-up {
+    z-index: $z;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1;
+
+    // 矢印の色
+    &::after {
+      color: var(--c-return-up--color);
+    }
+  }
+}

@@ -1,0 +1,74 @@
+// <dl> の構造スタイル
+// CSS カスタムプロパティの定義とモディファイは派生側（syg-flocss6-import/config/component/_list-dl.scss）で設定
+
+@use "list-common";
+
+@mixin c-list-dl($config) {
+  // 普通のリスト
+  // <dl class="c-list-dl">
+  .c-list-dl {
+    @include c-list-dl-basic($config);
+    @include c-list-dl-dt-dd-basic($config);
+  }
+
+  // プリセット
+  @include c-list-dl-modify($config);
+}
+
+@mixin c-list-dl-basic($config) {
+  @include list-common.list-common($config);
+  padding-left: var(--c-list-dl--padding-left);
+}
+
+@mixin c-list-dl-dt-dd-basic($config) {
+  > dt {
+    position: relative;
+    padding-left: var(--c-list-dl__dt--padding-left);
+    line-height: var(--c-list-dl__dt--line-height);
+    font-weight: var(--c-list-dl__dt--font-weight);
+
+    &::before {
+      position: var(--c-list-dl__dt-before--position);
+      left: var(--c-list-dl__dt-before--left);
+      top: var(--c-list-dl__dt-before--top);
+      width: var(--c-list-dl__dt-before--width);
+      color: var(--c-list-dl__dt-before--color);
+      text-align: var(--c-list-dl__dt-before--text-align);
+      font-size: var(--c-list-dl__dt-before--font-size);
+      font-family: var(--c-list-dl__dt-before--font-family);
+    }
+  }
+
+  > dd + dt {
+    margin-top: var(--c-list-dl__dt--margin-top);
+  }
+
+  > dd:not(:empty) {
+    position: relative;
+    margin-top: var(--c-list-dl__dd--margin-top);
+    padding-left: var(--c-list-dl__dd--padding-left);
+    line-height: var(--c-list-dl__dd--line-height);
+  }
+}
+
+//////////////////////////////
+// バリエーション
+@mixin c-list-dl-modify($config) {
+  // タイトル太字
+  // <dl class="c-list-dl c-list-dl--bold">
+  .c-list-dl.c-list-dl--bold {
+    > dt {
+      font-weight: 700;
+    }
+  }
+
+  // カウンター
+  // <dl class="c-list-dl c-list-dl--counter">
+  .c-list-dl.c-list-dl--counter {
+    counter-reset: section;
+
+    > dt {
+      counter-increment: section;
+    }
+  }
+}

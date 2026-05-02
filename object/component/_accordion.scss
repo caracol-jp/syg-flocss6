@@ -1,0 +1,114 @@
+// <section class="c-accordion u-mg_t_n js-is-open">
+//   <div class="c-accordion__summary js-is-open-button">出演者へのプレゼント・お花について</div>
+//   <div class="c-accordion__content">
+//     <div class="c-accordion__body">内容</div>
+//   </div>
+// </section>
+
+// .c-accordion の構造スタイル
+// CSS カスタムプロパティのデフォルト値は派生側（syg-flocss6-import/config/component/_accordion.scss）で設定
+
+// .c-accordion__summary のホバー時スタイル（hover/active で共用）
+@mixin _c-accordion-summary-hover {
+  background: var(--c-accordion__summery--background-hover);
+  color: var(--c-accordion__summery--color-hover);
+
+  &::after {
+    color: var(--c-accordion__summery--icon-color-hover);
+  }
+}
+
+@mixin c-accordion($config) {
+  .c-accordion {
+    .c-accordion__summary {
+      letter-spacing: 0.2em;
+      line-height: 1.4;
+      gap: 0.5rem;
+      transition: 0.3s;
+
+      &::after {
+        font-family: arrows;
+        transform: rotate(45deg);
+        transition: 0.5s;
+        content: "\e9ad";
+      }
+    }
+
+    // OPEN 状態
+    &[open],
+    &[data-is-open="true"] {
+      .c-accordion__summary::after {
+        transform: rotate(0);
+      }
+    }
+  }
+
+  .c-accordion__summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--c-accordion__summery--padding);
+    background: var(--c-accordion__summery--background);
+    color: var(--c-accordion__summery--color);
+    font-size: var(--c-accordion__summery--font-size);
+
+    &::after {
+      display: inline-block;
+      color: var(--c-accordion__summery--icon-color);
+      font-size: var(--c-accordion__summery--icon-font-size);
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        @include _c-accordion-summary-hover;
+      }
+    }
+    @media (hover: none) {
+      &:active {
+        @include _c-accordion-summary-hover;
+      }
+    }
+
+    // <details> を使っているページのために残してある
+    &:-webkit-details-marker {
+      display: none;
+    }
+
+    .c-accordion[open] &,
+    .c-accordion[data-is-open="true"] & {
+      background: var(--c-accordion__summery--background-open);
+      color: var(--c-accordion__summery--color-open);
+
+      &::after {
+        color: var(--c-accordion__summery--icon-color-open);
+      }
+
+      &:hover,
+      &:active {
+        background: var(--c-accordion__summery--background-open-hover);
+        color: var(--c-accordion__summery--color-open-hover);
+
+        &::after {
+          color: var(--c-accordion__summery--icon-color-open-hover);
+        }
+      }
+    }
+  }
+
+  .c-accordion__content {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s ease;
+
+    // OPEN 状態
+    .c-accordion[open] &,
+    .c-accordion[data-is-open="true"] & {
+      grid-template-rows: 1fr;
+    }
+  }
+
+  .c-accordion__body {
+    min-height: 0;
+    overflow: hidden;
+  }
+}

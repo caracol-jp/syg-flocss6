@@ -1,0 +1,8 @@
+// リスト共通設定
+// カスタムプロパティの定義は派生側（syg-flocss6-import/config/component/_list-common.scss）
+
+// <ul><ol><dl>全リスト共通（各リストの mixin 内から @include される）
+@mixin list-common($config) {
+  margin-top: var(--c-list-common--margin-top);
+  margin-bottom: var(--c-list-common--margin-bottom);
+}

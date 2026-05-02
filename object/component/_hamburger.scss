@@ -1,0 +1,139 @@
+// スマホ用ハンバーガーメニュー
+// CSS カスタムプロパティ定義は派生側（syg-flocss6-import/config/component/_hamburger.scss）で設定
+
+@use 'sass:map';
+
+@mixin c-hamburger($config) {
+  @include _c-hamburger($config);
+  @include _c-hamburger__text($config);
+  @include _c-hamburger__line($config);
+}
+
+//////////////////////////
+// ベース
+@mixin _c-hamburger($config) {
+  $z: map.get($config, core, z-index, hamburger);
+
+  .c-hamburger {
+    z-index: $z;
+    display: var(--c-hamburger--display);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: var(--c-hamburger--bg-normal);
+    box-shadow: var(--c-hamburger--shadow-normal);
+
+    // hover 対応デバイスのみ
+    @media (hover: hover) {
+      &:hover {
+        background-color: var(--c-hamburger--bg-hover);
+        box-shadow: var(--c-hamburger--shadow-hover);
+      }
+    }
+    &:active {
+      background-color: var(--c-hamburger--bg-hover);
+      box-shadow: var(--c-hamburger--shadow-hover);
+    }
+
+    // OPEN
+    &[data-hamburger-open='true'] {
+      background-color: var(--c-hamburger--bg-open);
+      box-shadow: var(--c-hamburger--shadow-open);
+    }
+  }
+}
+
+//////////////////////////
+// テキスト
+@mixin _c-hamburger__text($config) {
+  .c-hamburger__text {
+    position: absolute;
+    display: var(--c-hamburger__text--display);
+    bottom: var(--c-hamburger__text--bottom);
+    width: 100%;
+    text-align: center;
+    font-size: var(--c-hamburger__text--size);
+    color: var(--c-hamburger__text--color-normal);
+    line-height: 1;
+
+    @media (hover: hover) {
+      .c-hamburger:hover & {
+        color: var(--c-hamburger__text--color-hover);
+      }
+    }
+    .c-hamburger:active & {
+      color: var(--c-hamburger__text--color-hover);
+    }
+
+    .c-hamburger[data-hamburger-open='true'] & {
+      color: var(--c-hamburger__text--color-open);
+    }
+  }
+}
+
+//////////////////////////
+// 三本線
+@mixin _c-hamburger__line($config) {
+  $opt: map.get($config, component, hamburger);
+  $count: map.get($opt, line, count);
+
+  .c-hamburger__line {
+    display: block;
+    width: var(--c-hamburger__line--width);
+    height: var(--c-hamburger__line--height);
+    background-color: var(--c-hamburger__line--color-normal);
+    transition: inherit;
+
+    &:nth-of-type(1) {
+      margin-bottom: var(--c-hamburger__line--margin);
+      transform-origin: map.get($opt, line, transform-origin-1);
+    }
+
+    &:nth-of-type(2) {
+      @if $count == 2 {
+        display: none;
+      } @else {
+        margin-bottom: var(--c-hamburger__line--margin);
+        transform-origin: map.get($opt, line, transform-origin-2);
+      }
+    }
+
+    &:nth-of-type(3) {
+      transform-origin: map.get($opt, line, transform-origin-3);
+    }
+
+    @media (hover: hover) {
+      .c-hamburger:hover & {
+        background-color: var(--c-hamburger__line--color-hover);
+      }
+    }
+    .c-hamburger:active & {
+      background-color: var(--c-hamburger__line--color-hover);
+    }
+
+    // OPEN 時の line 変形
+    .c-hamburger[data-hamburger-open='true'] & {
+      background-color: var(--c-hamburger__line--color-open);
+
+      &:nth-of-type(1) {
+        @if $count == 2 {
+          transform: translateY(calc((var(--c-hamburger__line--height) + var(--c-hamburger__line--margin)) / 2)) rotate(45deg);
+        } @else {
+          transform: translateY(calc(var(--c-hamburger__line--height) + var(--c-hamburger__line--margin))) rotate(45deg);
+        }
+      }
+
+      &:nth-of-type(2) {
+        opacity: 0;
+      }
+
+      &:nth-of-type(3) {
+        @if $count == 2 {
+          transform: translateY(calc((var(--c-hamburger__line--height) + var(--c-hamburger__line--margin)) * -1 / 2)) rotate(-45deg);
+        } @else {
+          transform: translateY(calc((var(--c-hamburger__line--height) + var(--c-hamburger__line--margin)) * -1)) rotate(-45deg);
+        }
+      }
+    }
+  }
+}

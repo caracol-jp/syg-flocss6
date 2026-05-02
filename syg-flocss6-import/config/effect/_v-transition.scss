@@ -1,0 +1,104 @@
+// .e-v-transition_xxx プロジェクト固有設定
+// Vue.js の <transition> で使うエフェクト
+// <transition name="e-v-transition_fade">
+
+$v-transition: ();
+
+@mixin e-v-transition($config) {
+  // fade（enter/leave 共通）
+  .e-v-transition_fade {
+    &-leave-active,
+    &-enter-active {
+      transition: 0.2s;
+    }
+
+    &-leave-to,
+    &-enter-from,
+    &-enter {
+      opacity: 0;
+    }
+
+    &-leave-from,
+    &-leave,
+    &-enter-to {
+      opacity: 1;
+    }
+  }
+
+  // to-down（enter/leave 共通）
+  .e-v-transition_to-down {
+    &-leave-active,
+    &-enter-active {
+      transition: 0.2s;
+    }
+
+    &-leave-to,
+    &-enter-from,
+    &-enter {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+
+    &-leave-from,
+    &-leave,
+    &-enter-to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  // to-right（enter/leave 共通）
+  .e-v-transition_to-right {
+    &-leave-active,
+    &-enter-active {
+      transition: 0.2s;
+    }
+
+    &-leave-to,
+    &-enter-from,
+    &-enter {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+
+    &-leave-from,
+    &-leave,
+    &-enter-to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  // top-to-bottom（enter/leave 別々）
+  .e-v-transition_top-to-bottom {
+    &-enter-active {
+      transition: 1s;
+    }
+
+    &-enter-from,
+    &-enter {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+
+    &-enter-to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    &-leave-active {
+      transition: 0.4s;
+    }
+
+    &-leave-from,
+    &-leave {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    &-leave-to {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+  }
+}

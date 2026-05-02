@@ -1,0 +1,13 @@
+@mixin u-ir($config) {
+  .u-ir_contrast {
+    image-rendering: -webkit-optimize-contrast;
+  }
+
+  .u-ir_auto {
+    image-rendering: auto;
+  }
+
+  .u-ir_pixel {
+    image-rendering: pixelated;
+  }
+}

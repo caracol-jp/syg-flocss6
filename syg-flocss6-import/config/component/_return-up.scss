@@ -1,0 +1,74 @@
+// ページ上部に戻るボタン
+// <a class="c-return-up">
+// プロジェクト固有のスタイル / カスタムプロパティ
+// 構造はコア側（node_modules/.../object/component/_return-up.scss）で管理
+
+@use 'sass:map';
+
+
+// hover 時のカスタムプロパティ + 構造（背景色、シャドウ）
+@mixin _c-return-up-hover {
+  --c-return-up--color: #ccc;
+  background-color: #666;
+  box-shadow: none;
+}
+
+@mixin c-return-up($config) {
+  $mq: map.get($config, core, media-query);
+
+  .c-return-up {
+    // 基本スタイル（プロジェクト固有）
+    position: fixed;
+    border: none;
+    border-radius: 50%;
+    font-family: arrows;
+    transition: all 0.2s;
+
+    --c-return-up--color: #fff;
+    background-color: #000;
+    box-shadow: none;
+
+    // 矢印アイコン
+    &::after {
+      content: "\e903";
+    }
+
+    // hover / active
+    @media (hover: hover) {
+      &:hover {
+        @include _c-return-up-hover;
+      }
+    }
+    &:active {
+      @include _c-return-up-hover;
+    }
+
+    // syg-scroll-amount でスクロール状態検知
+    &[data-scroll-amount~="top"] {
+      transform: translateY(100px);
+    }
+    &[data-scroll-amount~="not-top"] {
+      transform: translateY(0);
+    }
+  }
+
+  // メディア毎のサイズ・位置
+  @media #{map.get($mq, pc)} {
+    .c-return-up {
+      right: 10px;
+      bottom: 10px;
+      width: 50px;
+      height: 50px;
+      font-size: 30px;
+    }
+  }
+  @media #{map.get($mq, tb-lo)} {
+    .c-return-up {
+      right: 10px;
+      bottom: 10px;
+      width: 40px;
+      height: 40px;
+      font-size: 20px;
+    }
+  }
+}

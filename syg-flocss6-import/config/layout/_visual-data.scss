@@ -1,0 +1,30 @@
+// .l-visual-data プロジェクト固有設定
+// - $visual-data: 現状は空（将来コンパイル時パラメータが必要なら追加）
+// - @mixin l-visual-data: メディアクエリ毎の columns / gap 等を記述
+
+@use "sass:map";
+
+$visual-data: ();
+
+@mixin l-visual-data($config) {
+  $mq: map.get($config, core, media-query);
+
+  @media #{map.get($mq, pc)} {
+    .l-visual-data {
+      --l-visual-data--columns: 23rem 1fr;
+      --l-visual-data--gap: 4rem;
+    }
+  }
+
+  @media #{map.get($mq, tb)} {
+    .l-visual-data {
+      --l-visual-data--gap: 4rem;
+    }
+  }
+
+  @media #{map.get($mq, sp)} {
+    .l-visual-data {
+      --l-visual-data--gap: 4rem;
+    }
+  }
+}

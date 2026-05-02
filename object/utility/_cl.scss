@@ -1,0 +1,19 @@
+// color
+
+@use "sass:map";
+
+@mixin u-cl($config) {
+  @each $name, $color in map.get($config, core, color) {
+    @each $type, $code in $color {
+      @if $type == "base" {
+        .u-cl_#{'' + $name} {
+          color: var(--root-color_#{$name});
+        }
+      } @else {
+        .u-cl_#{'' + $name}-#{$type} {
+          color: var(--root-color_#{$name}-#{$type});
+        }
+      }
+    }
+  }
+}

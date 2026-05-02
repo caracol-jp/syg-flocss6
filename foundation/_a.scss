@@ -1,0 +1,16 @@
+@use "sass:map";
+@use "../method";
+
+@mixin a($config) {
+  a,
+  a:focus {
+    color: var(--root-color_link);
+    text-decoration: none;
+    transition: 0.2s;
+  }
+
+  a:hover,
+  a:active {
+    color: var(--root-color_link-hover);
+  }
+}

@@ -1,0 +1,28 @@
+// .c-article-visual プロジェクト固有
+// CSS カスタムプロパティと一部のモディファイ（wide / 2 カラム）のみ
+// 構造スタイルはコア側（node_modules/.../object/component/_article-visual.scss）
+
+
+@mixin c-article-visual($config) {
+  .c-article-visual {
+    --c-article-visual--gap-x: 1rem;
+    --c-article-visual--gap-y: 2rem;
+    --c-article-visual--caption-margin-top: 1rem;
+    --c-article-visual--caption-line-height: var(--root-line-height_s2);
+    --c-article-visual--caption-font-size: var(--root-font-size_s1);
+    --c-article-visual--item-max-width-pc: 40rem;
+    --c-article-visual--item-max-width-tb: 70%;
+    --c-article-visual--item-max-width-sp: 75%;
+  }
+
+  .c-article-visual__item.c-article-visual__item--wide {
+    --c-article-visual--item-max-width-pc: 100%;
+    --c-article-visual--item-max-width-tb: 100%;
+    --c-article-visual--item-max-width-sp: 100%;
+  }
+  .c-article-visual__item.c-article-visual__item--2 {
+    --c-article-visual--item-max-width-pc: calc((100% - var(--c-article-visual--gap-x)) / 2);
+    --c-article-visual--item-max-width-tb: calc((100% - var(--c-article-visual--gap-x)) / 2);
+    --c-article-visual--item-max-width-sp: 75%;
+  }
+}

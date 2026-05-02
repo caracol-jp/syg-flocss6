@@ -1,0 +1,34 @@
+// サウンドプレイボタン構造
+// 状態毎のカスタムプロパティは派生側（syg-flocss6-import/config/component/_sound-btn.scss）で設定
+
+@mixin _c-sound-btn-hover {
+  background: var(--c-sound-btn--bg-hover);
+  color: var(--c-sound-btn--color-hover);
+}
+
+@mixin c-sound-btn($config) {
+  .c-sound-btn {
+    display: inline-block;
+    padding: var(--c-sound-btn--padding);
+    line-height: 1;
+    border-radius: var(--c-sound-btn--radius);
+    transition: var(--c-sound-btn--transition);
+    background: var(--c-sound-btn--bg);
+    color: var(--c-sound-btn--color);
+
+    &::after {
+      font-family: var(--c-sound-btn--font-family);
+      font-size: var(--c-sound-btn--font-size);
+      content: var(--c-sound-btn--content);
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        @include _c-sound-btn-hover;
+      }
+    }
+    &:active {
+      @include _c-sound-btn-hover;
+    }
+  }
+}

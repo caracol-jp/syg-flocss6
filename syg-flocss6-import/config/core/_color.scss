@@ -1,0 +1,91 @@
+/* stylelint-disable */
+/* stylelint-disable */
+// ↑を書かないとコメントが消されてしまうので
+
+@use "sass:map";
+@use "sass:color";
+
+$color: (
+  transparent: (
+    base: transparent
+  ),
+  black: (
+    base: #000,
+    light: #333,
+    dark: #000
+  ),
+  white: (
+    base: #fff,
+    light: #fff,
+    dark: #ccc
+  ),
+  red: (
+    base: #d50707,
+    light: color.scale(#d50707, $lightness: 20%),
+    dark: color.scale(#d50707, $lightness: -10%),
+  ),
+  // pink: (
+  //   base: #ff78a9,
+  //   light: color.scale(#ff78a9, $lightness: 20%),
+  //   dark: color.scale(#ff78a9, $lightness: -10%),
+  // ),
+  // purple: (
+  //   base: #ea28ba,
+  //   light: color.scale(#ea28ba, $lightness: 20%),
+  //   dark: color.scale(#ea28ba, $lightness: -10%),
+  // ),
+  // blue: (
+  //   base: #00aeee,
+  //   light: color.scale(#00aeee, $lightness: 20%),
+  //   dark: color.scale(#00aeee, $lightness: -10%),
+  // ),
+  // aqua: (
+  //   base: #67d2ff,
+  //   light: color.scale(#67d2ff, $lightness: 20%),
+  //   dark: color.scale(#67d2ff, $lightness: -10%),
+  // ),
+  // green: (
+  //   base: #50aa32,
+  //   light: color.scale(#50aa32, $lightness: 20%),
+  //   dark: color.scale(#50aa32, $lightness: -10%),
+  // ),
+  // lime: (
+  //   base: #65e68d,
+  //   light: color.scale(#65e68d, $lightness: 20%),
+  //   dark: color.scale(#65e68d, $lightness: -10%),
+  // ),
+  // yellow: (
+  //   base: #ffff96,
+  //   light: color.scale(#ffff96, $lightness: 10%),
+  //   dark: color.scale(#ffff96, $lightness: -10%),
+  // ),
+  // orange: (
+  //   base: #ffcc00,
+  //   light: color.scale(#ffcc00, $lightness: 20%),
+  //   dark: #feb001,
+  // ),
+  // brown: (
+  //   base: #945a2e,
+  //   light: color.scale(#945a2e, $lightness: 20%),
+  //   dark: color.scale(#945a2e, $lightness: -10%),
+  // ),
+  darkgray: (
+    base: #444,
+    light: #666,
+    dark: #333,
+  ),
+  gray: (
+    base: #aaa,
+    light: #ccc,
+    dark: #888,
+  ),
+  lightgray: (
+    base: #eee,
+    light: #f7f7f7,
+    dark: #ddd,
+  )
+) !default;
+
+// 色：リンク
+$color: map.set($color, link, base, map.get($color, red, base));
+$color: map.set($color, link-hover, base, #000);

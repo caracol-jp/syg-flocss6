@@ -1,0 +1,18 @@
+// .l-visual-data コア
+// グリッドのベース構造のみを定義する
+// columns / gap / visual-section / data-section のプロジェクト固有設定は派生側
+
+@mixin l-visual-data($config) {
+  .l-visual-data {
+    display: grid;
+    grid-template-columns: var(--l-visual-data--columns, 1fr);
+    gap: var(--l-visual-data--gap, 0);
+  }
+
+  // ビジュアル部 / データ部はベースクラスのみ。派生で拡張する
+  .l-visual-data__visual {
+  }
+
+  .l-visual-data__data {
+  }
+}

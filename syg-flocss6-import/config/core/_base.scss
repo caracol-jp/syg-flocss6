@@ -1,0 +1,13 @@
+$base: (
+  background-color: #eee,
+  color: #333,
+  font-size: (
+    pc: clamp(14px, 1.15vw, 19px),
+    tb: 1.95vw,
+    sp: 3.6vw
+  ),
+  font-family: gothic,
+  font-feature: "palt",
+  letter-spacing: 0.05em,
+  line-height: 1.9
+) !default;

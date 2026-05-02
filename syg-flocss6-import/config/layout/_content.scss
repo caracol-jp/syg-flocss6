@@ -1,0 +1,49 @@
+// .l-content
+// 幅指定に使う
+
+// 下記のような変数が定義される。
+// --root-content-width_l-pc
+// --root-content-padding_n-sp
+
+// さらに下記のような class も定義される。
+// .pc:l-content_w_n 幅を指定して左右 margin auto
+// .sp:l-content_p_n 左右 padding を指定
+
+// 基本的には PC用は max-width で指定、タブレット、スマホは左右 padding を指定。
+
+$content: (
+  media: (
+    pc: (
+      max-width: (
+        // pc:l-content_p_n と合わせた時に1200px相当
+        l1: 78.5rem,
+        // pc:l-content_p_n と合わせた時に1000px相当
+        n: 66.5rem,
+        // pc:l-content_p_n と合わせた時に800px相当
+        s1: 53.7rem,
+      ),
+      width: (
+        n: 1000px,
+      ),
+      padding: (
+        n: 2rem,
+      ),
+      margin: (
+        n: 2rem,
+      ),
+    ),
+    tb: (
+      padding: (
+        l1: 2rem,
+        n: 3rem,
+        s1: 4rem,
+      ),
+    ),
+    sp: (
+      padding: (
+        n: 1rem,
+        s1: 2rem,
+      ),
+    ),
+  ),
+) !default;

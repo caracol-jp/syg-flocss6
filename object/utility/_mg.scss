@@ -1,0 +1,44 @@
+// margin
+@use "sass:map";
+@use "../../method";
+
+@mixin u-mg($config) {
+  // 全環境
+  @each $size, $val in map.get($config, core, spacer, pc) {
+    @include _u-mg($size);
+  }
+
+  .u-mg_auto {
+    margin-inline: auto;
+  }
+
+  @each $media in map.get($config, core, media-prefix) {
+    @media #{method.mq($config, $media)} {
+      @each $size, $val in map.get($config, core, spacer, $media) {
+        @include _u-mg($size, "#{$media}\\:");
+      }
+      .#{$media}\:u-mg_auto {
+        margin-inline: auto;
+      }
+    }
+  }
+}
+
+/**
+* $size: s3, s2 ,n など
+* $media: pc, tb, sp など
+**/
+@mixin _u-mg($size, $media: "") {
+  .#{$media}u-mg_t_#{$size} {
+    margin-top: var(--root-spacer_#{$size});
+  }
+  .#{$media}u-mg_b_#{$size} {
+    margin-bottom: var(--root-spacer_#{$size});
+  }
+  .#{$media}u-mg_r_#{$size} {
+    margin-right: var(--root-spacer_#{$size});
+  }
+  .#{$media}u-mg_l_#{$size} {
+    margin-left: var(--root-spacer_#{$size});
+  }
+}

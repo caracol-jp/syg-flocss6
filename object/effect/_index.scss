@@ -1,0 +1,13 @@
+@use 'hover' as *;
+@use 'shadow' as *;
+@use 'iv' as *;
+@use 'v-transition' as *;
+@use 'spmenu' as *;
+
+@mixin effect($config) {
+  @include e-hover($config);
+  @include e-shadow($config);
+  @include e-iv($config);
+  @include e-v-transition($config);
+  @include e-spmenu($config);
+}

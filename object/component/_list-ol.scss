@@ -1,0 +1,46 @@
+// <ol> の構造スタイル
+// 開始番号を指定する場合は style="counter-reset: section 10" のようにする
+// CSS カスタムプロパティの定義とモディファイは派生側（syg-flocss6-import/config/component/_list-ol.scss）で設定
+
+@use "list-common";
+
+@mixin c-list-ol($config) {
+  .c-list-ol {
+    @include list-ol-basic($config);
+    @include list-ol-li-basic($config);
+  }
+}
+
+// Wordpress では class を付けない <ol> のまま使うので、mixin に切り出す
+@mixin list-ol-basic($config) {
+  @include list-common.list-common($config);
+
+  counter-reset: section;
+  padding-left: var(--c-list-ol--padding-left);
+  line-height: var(--c-list-ol--line-height);
+}
+
+@mixin list-ol-li-basic($config) {
+  > li {
+    position: relative;
+    list-style-type: var(--c-list-ol__li--style-type);
+    padding-left: var(--c-list-ol__li--padding-left);
+
+    + li {
+      margin-top: var(--c-list-ol__li--margin-top);
+    }
+
+    &::before {
+      position: var(--c-list-ol__li-before--position);
+      left: var(--c-list-ol__li-before--left);
+      top: var(--c-list-ol__li-before--top);
+      width: var(--c-list-ol__li-before--width);
+      color: var(--c-list-ol__li-before--color);
+      text-align: var(--c-list-ol__li-before--text-align);
+      font-family: var(--c-list-ol__li-before--font-family);
+      font-weight: var(--c-list-ol__li-before--font-weight);
+      font-size: var(--c-list-ol__li-before--font-size);
+      counter-increment: section;
+    }
+  }
+}

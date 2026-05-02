@@ -1,0 +1,62 @@
+// <dl class="c-list-dl">
+// プロジェクト固有の CSS カスタムプロパティ定義とモディファイ
+// 構造スタイルはコア側（node_modules/.../object/component/_list-dl.scss）で管理
+
+
+@mixin c-list-dl($config) {
+  .c-list-dl {
+    --c-list-dl--padding-left: 0;
+    --c-list-dl__dt--margin-top: var(--root-spacer_s3);
+    --c-list-dl__dt--padding-left: 0;
+    --c-list-dl__dt--line-height: var(--root-line-height);
+    --c-list-dl__dt--font-weight: 400;
+    --c-list-dl__dt-before--position: absolute;
+    --c-list-dl__dt-before--left: 0;
+    --c-list-dl__dt-before--top: -0.1em;
+    --c-list-dl__dt-before--width: 1.5em;
+    --c-list-dl__dt-before--color: inherit;
+    --c-list-dl__dt-before--text-align: right;
+    --c-list-dl__dt-before--font-size: 1em;
+    --c-list-dl__dt-before--font-family: arrows;
+    --c-list-dl__dd--margin-top: var(--root-spacer_s3);
+    --c-list-dl__dd--padding-left: 0;
+    --c-list-dl__dd--line-height: var(--root-line-height);
+  }
+
+  // dd-small: <dd> のフォントサイズを小さく
+  .c-list-dl.c-list-dl--dd-small > dd {
+    font-size: var(--root-font-size_s1);
+  }
+
+  // mark: アイコンマーカー
+  .c-list-dl.c-list-dl--mark {
+    --c-list-dl__dt--padding-left: 1.5em;
+    --c-list-dl__dt-before--left: 0;
+    --c-list-dl__dt-before--top: 0;
+    --c-list-dl__dt-before--width: 1.5em;
+    --c-list-dl__dt-before--color: red;
+    --c-list-dl__dt-before--text-align: left;
+    --c-list-dl__dt-before--font-size: 1em;
+    --c-list-dl__dt-before--font-family: arrows;
+    --c-list-dl__dd--padding-left: 1.5em;
+  }
+  .c-list-dl.c-list-dl--mark > dt::before {
+    content: '\e98a';
+  }
+
+  // counter: 番号付き
+  .c-list-dl.c-list-dl--counter {
+    --c-list-dl__dt--padding-left: 2em;
+    --c-list-dl__dt-before--left: 0;
+    --c-list-dl__dt-before--top: 0;
+    --c-list-dl__dt-before--width: 1.5em;
+    --c-list-dl__dt-before--color: inherit;
+    --c-list-dl__dt-before--text-align: right;
+    --c-list-dl__dt-before--font-size: 1em;
+    --c-list-dl__dt-before--font-family: inherit;
+    --c-list-dl__dd--padding-left: 2em;
+  }
+  .c-list-dl.c-list-dl--counter > dt::before {
+    content: counters(section, '.') '.';
+  }
+}

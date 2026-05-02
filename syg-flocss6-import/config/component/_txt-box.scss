@@ -1,0 +1,19 @@
+// テキスト背景に色を敷く
+// 構造はコア側（node_modules/.../object/component/_txt-box.scss）で管理
+
+
+@mixin c-txt-box($config) {
+  .c-txt-box {
+    --c-txt-box--bgcolor: red;
+    --c-txt-box--color: white;
+    --c-txt-box--padding-top: 5%;
+    --c-txt-box--padding-bottom: 95%;
+    --c-txt-box--padding-left: 0.1em;
+    --c-txt-box--padding-right: 0.1em;
+  }
+
+  .c-txt-box.c-txt-box--bg-black {
+    --c-txt-box--bgcolor: black;
+    --c-txt-box--color: white;
+  }
+}

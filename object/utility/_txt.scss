@@ -1,0 +1,74 @@
+// テキスト揃え
+
+@use 'sass:map';
+@use '../../method';
+
+@mixin u-txt($config) {
+  // 寄せ
+  @include _u-txt_left();
+
+  @each $media in map.get($config, core, media-prefix) {
+    @media #{method.mq($config, $media)} {
+      @include _u-txt_left('#{$media}\\:');
+    }
+  }
+
+  @include _u-txt_center();
+
+  @each $media in map.get($config, core, media-prefix) {
+    @media #{method.mq($config, $media)} {
+      @include _u-txt_center('#{$media}\\:');
+    }
+  }
+
+  @include _u-txt_right();
+
+  @each $media in map.get($config, core, media-prefix) {
+    @media #{method.mq($config, $media)} {
+      @include _u-txt_right('#{$media}\\:');
+    }
+  }
+
+  @include _u-txt_justify();
+
+  // ジャスティファイをメディアクエリで切り替えることは無いと思うので除外
+  // @each $media in map.get($config, core, media-prefix) {
+  //   @media #{method.mq($config, $media)} {
+  //     @include _u-txt_justify("#{$media}\\:");
+  //   }
+  // }
+
+  // ダーシ・ダッシュ（長音棒）
+  .u-txt_dash {
+    display: inline-block;
+    transform-origin: left;
+    transform: scaleX(2);
+    padding-right: 1em;
+  }
+}
+
+// 寄せ
+@mixin _u-txt_left($media: '') {
+  .#{$media}u-txt_left {
+    text-align: left;
+  }
+}
+// センター
+@mixin _u-txt_center($media: '') {
+  .#{$media}u-txt_center {
+    text-align: center;
+  }
+}
+// 右寄せ
+@mixin _u-txt_right($media: '') {
+  .#{$media}u-txt_right {
+    text-align: right;
+  }
+}
+// ジャスティファイ
+@mixin _u-txt_justify($media: '') {
+  .#{$media}u-txt_justify {
+    text-align: justify;
+    text-justify: inter-ideograph;
+  }
+}

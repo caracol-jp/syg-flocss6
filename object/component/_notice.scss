@@ -1,0 +1,21 @@
+// 下記のような行頭に「※」がつくリストに使用
+
+// <p class="c-notice">※ほえほえ</p>
+// <ul class="c-notice">
+// <li>※ほえほえ</li>
+// </ul>
+
+@use 'sass:map';
+
+@mixin c-notice($config) {
+  p.c-notice,
+  ul.c-notice > li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 0.5em;
+
+    &::before {
+      content: var(--c-notice--chara, '※');
+    }
+  }
+}

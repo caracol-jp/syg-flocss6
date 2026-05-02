@@ -1,0 +1,23 @@
+// ルビ
+// <span class="c-ruby" data-ruby="ようぶようぶ">謡舞踊部</span>
+// プロジェクト固有のカスタムプロパティとモディファイ
+// 構造はコア側（node_modules/.../object/component/_ruby.scss）で管理
+
+@use 'sass:math';
+
+
+@mixin c-ruby($config) {
+  .c-ruby {
+    --c-ruby--top: -1em;
+    --c-ruby--font-size: 10px;
+    --c-ruby--letter-spacing: inherit;
+  }
+
+  // long モディファイ（長いルビ用に幅を広げて scaleX で縮める）
+  .c-ruby.c-ruby--long::after {
+    --c-ruby--font-size: var(--root-font-size_s3);
+    transform: scaleX(0.7);
+    transform-origin: left top;
+    width: #{math.div(100%, 0.7)};
+  }
+}

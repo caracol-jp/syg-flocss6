@@ -1,0 +1,5 @@
+@use "sass:map";
+
+@function easing($config, $name) {
+  @return map.get($config, core, easing, $name);
+}

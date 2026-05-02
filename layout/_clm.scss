@@ -1,0 +1,33 @@
+// .l-clm コア
+// ベーススタイル（column-gap 参照）と分割数バリアント（.l-clm--N）を生成する
+// プロジェクト固有のカスタマイズ（default gap、modifier 等）は派生側に記述する
+
+@use "sass:map";
+@use "../method";
+
+@mixin l-clm($config) {
+  $devide: map.get($config, layout, clm, devide);
+
+  .l-clm {
+    column-gap: var(--l-clm-gap);
+  }
+
+  @include _l-clm-devide($devide);
+
+  @each $media in map.get($config, core, media-prefix) {
+    @media #{method.mq($config, $media)} {
+      @include _l-clm-devide($devide, "#{$media}\\:");
+    }
+  }
+}
+
+///////////////////////////////
+// 分割数バリアント
+// <div class="l-clm l-clm--2">
+@mixin _l-clm-devide($devide, $media: "") {
+  @for $i from 2 through $devide {
+    .l-clm.#{$media}l-clm--#{$i} {
+      column-count: $i !important;
+    }
+  }
+}

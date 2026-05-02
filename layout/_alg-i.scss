@@ -1,0 +1,30 @@
+@use "sass:map";
+@use "../method";
+
+@mixin l-alg-i($config) {
+  @include _l-alg-i;
+
+  @each $media in map.get($config, core, media-prefix) {
+    @media #{method.mq($config, $media)} {
+      @include _l-alg-i("#{$media}\\:");
+    }
+  }
+}
+
+@mixin _l-alg-i($media: "") {
+  .#{$media}l-alg-i_center {
+    align-items: center;
+  }
+
+  .#{$media}l-alg-i_start {
+    align-items: flex-start;
+  }
+
+  .#{$media}l-alg-i_end {
+    align-items: flex-end;
+  }
+
+  .#{$media}l-alg-i_stretch {
+    align-items: stretch;
+  }
+}

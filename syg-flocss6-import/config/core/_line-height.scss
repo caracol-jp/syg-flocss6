@@ -1,0 +1,20 @@
+// 行間
+// config/core/_base.scss で指定している line-height が --root-line-height となり、
+// ここで指定する数値はその倍率として使われる
+// 例：
+// --root-line-height_n: calc(var(--root-line-height) * 1);
+
+@use "sass:map";
+@use "sass:math";
+@use "base";
+
+$line-height: (
+  s3: math.div(8, 11),
+  s2: math.div(8, 10),
+  s1: math.div(8, 9),
+  n: 1,
+  l1: math.div(8, 7),
+  l2: math.div(8, 6),
+  l3: math.div(8, 5),
+  l4: math.div(8, 4)
+) !default;

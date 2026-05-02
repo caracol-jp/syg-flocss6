@@ -1,0 +1,6 @@
+// e-spmenu 派生
+// スマホメニューのバリアントを切り替える（下層 spmenu/ 配下のファイルから選択）
+// バリアントファイルは $spmenu と @mixin e-spmenu($config) を定義する
+
+@forward "./spmenu/slide-to-bottom";
+// @forward "./spmenu/popup";

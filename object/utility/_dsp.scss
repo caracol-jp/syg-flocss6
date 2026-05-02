@@ -1,0 +1,32 @@
+// display 属性
+
+@use "sass:map";
+@use "../../method";
+
+@mixin u-dsp($config) {
+  @include _u-dsp();
+
+  @each $media in map.get($config, core, media-prefix) {
+    @media #{method.mq($config, $media)} {
+      @include _u-dsp("#{$media}\\:");
+    }
+  }
+}
+
+@mixin _u-dsp($media: "") {
+  .#{$media}u-dsp_bk {
+    display: block;
+  }
+
+  .#{$media}u-dsp_ib {
+    display: inline-block;
+  }
+
+  .#{$media}u-dsp_il {
+    display: inline;
+  }
+
+  .#{$media}u-dsp_none {
+    display: none;
+  }
+}

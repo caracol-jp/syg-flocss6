@@ -1,0 +1,79 @@
+// フレーム
+// プロジェクト固有の CSS カスタムプロパティ定義とモディファイ
+// 構造スタイルはコア側（node_modules/.../object/component/_frame.scss）で管理
+
+@use 'sass:map';
+
+
+@mixin c-frame($config) {
+  $mq: map.get($config, core, media-query);
+
+  .c-frame {
+    --c-frame--padding-top: 1rem;
+    --c-frame--padding-right: 1rem;
+    --c-frame--padding-bottom: 1rem;
+    --c-frame--padding-left: 1rem;
+    --c-frame--bg: transparent;
+    --c-frame--border: none;
+    --c-frame--radius: 0;
+  }
+
+  // pad_n モディファイ（PC / TB で padding を変える）
+  @media #{map.get($mq, pc)} {
+    .c-frame.c-frame--pad_n {
+      --c-frame--padding-top: 3rem;
+      --c-frame--padding-right: 3rem;
+      --c-frame--padding-bottom: 3rem;
+      --c-frame--padding-left: 3rem;
+    }
+  }
+  @media #{map.get($mq, tb)} {
+    .c-frame.c-frame--pad_n {
+      --c-frame--padding-top: 2rem;
+      --c-frame--padding-right: 3rem;
+      --c-frame--padding-bottom: 2rem;
+      --c-frame--padding-left: 3rem;
+    }
+  }
+
+  // pad_l1 モディファイ
+  @media #{map.get($mq, pc)} {
+    .c-frame.c-frame--pad_l1 {
+      --c-frame--padding-top: 100px;
+      --c-frame--padding-right: 70px;
+      --c-frame--padding-bottom: 100px;
+      --c-frame--padding-left: 70px;
+    }
+  }
+  @media #{map.get($mq, tb)} {
+    .c-frame.c-frame--pad_l1 {
+      --c-frame--padding-top: 3rem;
+      --c-frame--padding-right: 3rem;
+      --c-frame--padding-bottom: 3rem;
+      --c-frame--padding-left: 3rem;
+    }
+  }
+
+  // pad_article モディファイ（media-class: メディア毎にクラス接頭辞）
+  @media #{map.get($mq, pc)} {
+    .c-frame.pc\:c-frame--pad_article {
+      --c-frame--padding-top: 100px;
+      --c-frame--padding-right: 70px;
+      --c-frame--padding-bottom: 100px;
+      --c-frame--padding-left: 70px;
+    }
+  }
+  @media #{map.get($mq, tb)} {
+    .c-frame.tb\:c-frame--pad_article {
+      --c-frame--padding-top: 3rem;
+      --c-frame--padding-right: 3rem;
+      --c-frame--padding-bottom: 3rem;
+      --c-frame--padding-left: 3rem;
+    }
+  }
+
+  // 白ボーダー
+  .c-frame.c-frame--border-white {
+    --c-frame--border: solid 1px #fff;
+  }
+}

@@ -1,0 +1,35 @@
+// #{ ←これがファイル先頭にあるとリスト全てにカンマが付く
+
+// バッジ
+// modify を作成する時は下記の変数を指定する
+// --c-badge--padding
+// --c-badge--font-weight
+// --c-badge--radius
+// --c-badge--bg
+// --c-badge--color
+
+@use 'sass:map';
+
+// コア側の参照用（現状は未使用だが将来の利用に備えて残す）
+
+// 派生: .c-badge のプロジェクト固有スタイル
+@mixin c-badge($config) {
+  .c-badge {
+    --c-badge--padding: 0.3em 0.4em 0.3em 0.2em;
+    --c-badge--font-weight: 700;
+    --c-badge--radius: 0.25em;
+    --c-badge--bg: #000;
+    --c-badge--color: #fff;
+  }
+
+  .c-badge.c-badge--pad_l1 {
+    --c-badge--padding: 0.3em 1em 0.3em 1em;
+  }
+  .c-badge.c-badge--pad_l2 {
+    --c-badge--padding: 0.3em 2em 0.3em 2em;
+  }
+  .c-badge.c-badge--red {
+    --c-badge--bg: var(--root-color_red);
+    --c-badge--color: #fff;
+  }
+}

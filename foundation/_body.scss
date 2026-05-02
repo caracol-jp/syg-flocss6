@@ -1,0 +1,19 @@
+// 基本パラメーターを設定
+@use "sass:map";
+@use "../method";
+
+@mixin body($config) {
+  body {
+    --body-width: 100cqi; /* bodyコンテナの100% */
+
+    container-type: inline-size; /* bodyコンテナの100%に必要 */
+    background-color: var(--root-background-color);
+    color: var(--root-font-color);
+    font-feature-settings: map.get($config, core, base, font-feature);
+    letter-spacing: var(--root-letter-spacing);
+    line-height: var(--root-line-height);
+    -webkit-font-smoothing: antialiased;
+
+    @include method.font-family($config, map.get($config, core, base, font-family));
+  }
+}

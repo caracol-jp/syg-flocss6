@@ -1,0 +1,151 @@
+// .e-iv--xxx プロジェクト固有設定
+// スクロールインでフェードインするクラスの modifier と @keyframes を定義
+// $iv.delay はコア側が参照するので残す
+
+@use "sass:map";
+
+$iv: (
+  delay: (
+    2: 0.2s,
+    4: 0.4s,
+    6: 0.6s,
+    8: 0.8s,
+    10: 1s,
+  ),
+);
+
+@mixin e-iv($config) {
+  $mq: map.get($config, core, media-query);
+  $easing: map.get($config, core, easing);
+
+  // header（PC のみ適用）
+  @media #{map.get($mq, pc)} {
+    .e-iv--header {
+      --e-iv--duration: 1s;
+    }
+
+    [data-inview="true"] .e-iv--header,
+    .e-iv--header[data-inview="true"] {
+      animation-name: e-iv-header;
+    }
+  }
+
+  @keyframes e-iv-header {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  // visual
+  .e-iv--visual {
+    --e-iv--duration: 2s;
+  }
+
+  [data-inview="true"] .e-iv--visual,
+  .e-iv--visual[data-inview="true"] {
+    animation-name: e-iv-visual;
+  }
+
+  @keyframes e-iv-visual {
+    0% {
+      opacity: 0;
+      transform: scale(1.2);
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  // fade
+  .e-iv--fade {
+    --e-iv--duration: 1s;
+  }
+
+  [data-inview="true"] .e-iv--fade,
+  .e-iv--fade[data-inview="true"] {
+    animation-name: e-iv-fade;
+  }
+
+  @keyframes e-iv-fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  // to-up
+  .e-iv--to-up {
+    --e-iv--duration: 1s;
+  }
+
+  [data-inview="true"] .e-iv--to-up,
+  .e-iv--to-up[data-inview="true"] {
+    animation-name: e-iv-to-up;
+  }
+
+  @keyframes e-iv-to-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  // clip-to-down
+  .e-iv--clip-to-down {
+    --e-iv--duration: 0.5s;
+    --e-iv--easing: #{map.get($easing, in-out-cubic)};
+  }
+
+  [data-inview="true"] .e-iv--clip-to-down,
+  .e-iv--clip-to-down[data-inview="true"] {
+    animation-name: e-iv-clip-to-down;
+  }
+
+  @keyframes e-iv-clip-to-down {
+    from {
+      opacity: 1;
+      clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    }
+    to {
+      opacity: 1;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+  }
+
+  // clip-to-right
+  .e-iv--clip-to-right {
+    --e-iv--duration: 0.5s;
+    --e-iv--easing: #{map.get($easing, in-out-cubic)};
+  }
+
+  [data-inview="true"] .e-iv--clip-to-right,
+  .e-iv--clip-to-right[data-inview="true"] {
+    animation-name: e-iv-clip-to-right;
+  }
+
+  @keyframes e-iv-clip-to-right {
+    from {
+      opacity: 1;
+      clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+    }
+    to {
+      opacity: 1;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+  }
+}

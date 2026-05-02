@@ -1,0 +1,55 @@
+// ムービーアイコン
+// <a class="c-movie-icon-wrapper">
+//   <figure class="c-movie-icon">
+//     <img>
+//   </figure>
+// </a>
+// CSS カスタムプロパティ・モディファイは派生側（syg-flocss6-import/config/component/_movie-icon.scss）で設定
+
+@mixin c-movie-icon($config) {
+  // 基礎部
+  .c-movie-icon {
+    z-index: 1;
+    position: relative;
+    display: block;
+    border: none;
+    overflow: hidden;
+
+    &:focus {
+      outline: none;
+    }
+
+    // 再生アイコン（位置・サイズ・色は var() で参照）
+    &::after {
+      position: absolute;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      left: calc(50% - var(--c-movie-icon--width) / 2);
+      top: calc(50% - var(--c-movie-icon--height) / 2);
+      width: var(--c-movie-icon--width);
+      height: var(--c-movie-icon--height);
+      background: var(--c-movie-icon--bg);
+      color: var(--c-movie-icon--color);
+      border: var(--c-movie-icon--border);
+      border-radius: 50%;
+      box-shadow: var(--c-movie-icon--shadow);
+      font-size: var(--c-movie-icon--font-size);
+      opacity: var(--c-movie-icon--opacity);
+      transition: 0.2s;
+      pointer-events: none;
+    }
+
+    video {
+      vertical-align: bottom;
+    }
+  }
+
+  // ラッパー（コンテナクエリ用）
+  .c-movie-icon-wrapper {
+    position: relative;
+    container-name: movie-link-wrapper;
+    container-type: inline-size;
+  }
+}

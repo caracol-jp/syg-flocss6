@@ -1,0 +1,16 @@
+// Youtube や GoogleMap をレスポンシブ対応にする
+// aspect-ratio でコンテナの比率を保持し、iframe は 100% 充填
+// テーマ毎の .c-embed_{name} は派生側（syg-flocss6-import/config/component/_embed.scss）で設定
+
+@mixin c-embed($config) {
+  [class*="c-embed_"] {
+    display: block;
+    width: 100%;
+
+    iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

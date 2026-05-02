@@ -1,0 +1,45 @@
+// form 要素
+
+@use "sass:map";
+@use "../method";
+
+@mixin input($config) {
+  $opt: map.get($config, core, form);
+
+  textarea,
+  input[type="text"],
+  input[type="date"],
+  input[type="datetime-local"],
+  input[type="email"],
+  input[type="file"],
+  input[type="month"],
+  input[type="number"],
+  input[type="password"],
+  input[type="range"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="time"],
+  input[type="url"],
+  input[type="week"] {
+    padding: var(--input-padding, #{map.get($opt, input-padding)});
+    border: var(--input-border, #{map.get($opt, input-border)});
+    border-radius: var(--input-radius, #{map.get($opt, input-radius)});
+    box-sizing: border-box;
+    line-height: var(--input-line-height, #{map.get($opt, input-line-height)});
+    outline: 0;
+    box-shadow: var(--input-shadow, #{map.get($opt, input-shadow)});
+    transition: 0.2s;
+
+    &:focus {
+      box-shadow: var(--input-shadow-focus, #{map.get($opt, input-shadow-focus)});
+    }
+
+    &::placeholder {
+      color: var(--input-placeholder-color, #{map.get($opt, input-placeholder-color)});
+    }
+
+    @media #{method.mq($config, sp)} {
+      font-size: max(16px, 1rem);
+    }
+  }
+}

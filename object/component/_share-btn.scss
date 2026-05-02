@@ -1,0 +1,55 @@
+// シェアボタン構造
+// テーマ・サービス色は派生側（syg-flocss6-import/config/component/_share-btn.scss）で設定
+
+// hover 時の共通スタイル
+@mixin _c-share-btn-hover {
+  color: var(--c-share-btn--color-hover);
+  border: var(--c-share-btn--border-hover);
+  background: var(--c-share-btn--bg-hover);
+
+  i::before {
+    color: var(--c-share-btn--color-hover);
+  }
+}
+
+@mixin c-share-btn($config) {
+  .c-share-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: var(--c-share-btn--width);
+    height: var(--c-share-btn--height);
+    border-radius: var(--c-share-btn--border-radius);
+    font-size: var(--c-share-btn--font-size);
+    -webkit-font-smoothing: antialiased;
+    text-decoration: none;
+    user-select: none;
+    white-space: nowrap;
+    appearance: none;
+    cursor: pointer;
+    line-height: 1;
+    transition: var(--c-share-btn--transition);
+    color: var(--c-share-btn--color);
+    border: var(--c-share-btn--border);
+    background: var(--c-share-btn--bg);
+
+    i {
+      margin: var(--c-share-btn--icon-margin);
+
+      &::before {
+        color: var(--c-share-btn--color);
+        transition: var(--c-share-btn--transition);
+      }
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        @include _c-share-btn-hover;
+      }
+    }
+    &:focus,
+    &:active {
+      @include _c-share-btn-hover;
+    }
+  }
+}

@@ -1,0 +1,17 @@
+// キャプション設定
+// <a class="c-movie-icon"><span class="c-movie-icon__caption">
+// サムネイル上のキャプション
+
+// .c-caption の構造スタイル
+// CSS カスタムプロパティのデフォルト値とモディファイ（movie-title）のカスタムプロパティは
+// 派生側（syg-flocss6-import/config/component/_caption.scss）で設定
+
+@mixin c-caption($config) {
+  .c-caption {
+    display: block;
+    text-align: var(--c-caption--text-align);
+    background: var(--c-caption--bg);
+    font-size: var(--c-caption--font-size);
+    color: var(--c-caption--color);
+  }
+}

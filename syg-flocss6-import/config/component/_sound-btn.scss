@@ -1,0 +1,38 @@
+// サウンドプレイボタン
+// 構造はコア側（node_modules/.../object/component/_sound-btn.scss）で管理
+
+
+@mixin c-sound-btn($config) {
+  .c-sound-btn {
+    // base
+    --c-sound-btn--padding: 0 0.8em 0.2em 0.8em;
+    --c-sound-btn--radius: 0.2em;
+    --c-sound-btn--font-size: 0.5em;
+    --c-sound-btn--transition: 0.3s;
+    // play（デフォルト状態）
+    --c-sound-btn--bg: var(--root-color_red);
+    --c-sound-btn--color: #fff;
+    --c-sound-btn--font-family: icomoon;
+    --c-sound-btn--content: "\ea1c";
+    --c-sound-btn--bg-hover: #333;
+    --c-sound-btn--color-hover: #fff;
+  }
+
+  // 停止
+  .c-sound-btn[data-sound-state='stop'] {
+    --c-sound-btn--bg: #000;
+    --c-sound-btn--color: #fff;
+    --c-sound-btn--content: "\ea1e";
+    --c-sound-btn--bg-hover: var(--root-color_red-dark);
+    --c-sound-btn--color-hover: #fff;
+  }
+
+  // 一時停止
+  .c-sound-btn[data-sound-state='pause'] {
+    --c-sound-btn--bg: var(--root-color_red);
+    --c-sound-btn--color: #fff;
+    --c-sound-btn--content: "\ea1d";
+    --c-sound-btn--bg-hover: var(--root-color_red-dark);
+    --c-sound-btn--color-hover: #fff;
+  }
+}

@@ -1,0 +1,75 @@
+// ボタン
+// .c-btn のプロジェクト固有 CSS カスタムプロパティ定義とカスタムプロパティのみ設定するモディファイ
+// 構造スタイルはコア側（node_modules/.../object/component/_btn.scss）で管理
+
+@use 'sass:map';
+
+
+@mixin c-btn($config) {
+  .c-btn {
+    // 基本
+    --c-btn--padding: 0.8em 2em;
+    --c-btn--bg: transparent;
+    --c-btn--border: none;
+    --c-btn--radius: 0;
+    --c-btn--color: var(--root-font-color);
+    --c-btn--font-size: 0.9em;
+    --c-btn--transition: 0.2s;
+    --c-btn--icon-color: var(--root-font-color);
+    // hover/active/focus
+    --c-btn--bg-hover: transparent;
+    --c-btn--color-hover: var(--root-font-color);
+    --c-btn--icon-color-hover: var(--root-font-color);
+  }
+
+  // 無効状態（[disabled]）のカスタムプロパティ上書き
+  .c-btn[disabled] {
+    --c-btn--bg: #ccc;
+    --c-btn--color: #fff;
+  }
+
+  // padding モディファイ
+  .c-btn.c-btn--pad_s1 {
+    --c-btn--padding: 0.5em 1em;
+  }
+  .c-btn.c-btn--pad_l1 {
+    --c-btn--padding: 1em 2em;
+  }
+  .c-btn.c-btn--pad_l2 {
+    --c-btn--padding: 1.5em 3em;
+  }
+
+  // next アイコン（::after）
+  .c-btn.c-btn--next {
+    --c-btn--next-position: absolute;
+    --c-btn--next-right: 0.5rem;
+    --c-btn--next-top: calc(50% - 0.5em);
+    --c-btn--next-family: arrows;
+    --c-btn--next-size: 0.8em;
+    --c-btn--next-content: "\e90c";
+    --c-btn--next-translate: 5px 0;
+  }
+
+  // prev アイコン（::after）
+  .c-btn.c-btn--prev {
+    --c-btn--prev-position: absolute;
+    --c-btn--prev-left: 0.5rem;
+    --c-btn--prev-top: calc(50% - 0.5em);
+    --c-btn--prev-family: arrows;
+    --c-btn--prev-size: 0.8em;
+    --c-btn--prev-content: "\e925";
+    --c-btn--prev-translate: -5px 0;
+  }
+
+  // bg-black カラーバリアント
+  .c-btn.c-btn--bg-black {
+    --c-btn--bg: #000;
+    --c-btn--bg-hover: #666;
+    --c-btn--color: #fff;
+    --c-btn--color-hover: #fff;
+    --c-btn--icon-color: #fff;
+    --c-btn--icon-color-hover: #fff;
+    --c-btn--border: none;
+    --c-btn--radius: 0;
+  }
+}

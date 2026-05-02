@@ -1,0 +1,25 @@
+// .l-fx / .l-grid で使う gap
+
+@use "sass:map";
+@use "../method";
+
+@mixin l-gap($config) {
+  @include _l-gap($config);
+
+  @each $media in map.get($config, core, media-prefix) {
+    @media #{method.mq($config, $media)} {
+      @include _l-gap($config, "#{$media}\\:");
+    }
+  }
+}
+
+@mixin _l-gap($config, $media: "") {
+  @each $size, $val in map.get($config, core, spacer, pc) {
+    .#{$media}l-gap-x_#{$size} {
+      --l-gap-x: var(--root-spacer_#{$size});
+    }
+    .#{$media}l-gap-y_#{$size} {
+      --l-gap-y: var(--root-spacer_#{$size});
+    }
+  }
+}

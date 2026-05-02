@@ -1,0 +1,41 @@
+// ノートみたいな行間罫線
+// CSS カスタムプロパティ・モディファイ値は派生側（syg-flocss6-import/config/component/_rule-line.scss）で設定
+
+@mixin c-rule-line($config) {
+  .c-rule-line {
+    // 絶対配置（破線で親 position:relative と組み合わせる）
+    &.c-rule-line--absolute {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    // 通常線（線形グラデーション）
+    &.c-rule-line--solid {
+      background-size: 100% var(--c-rule-line--line-height);
+      background-image: linear-gradient(
+        to bottom,
+        transparent calc(100% - var(--c-rule-line--line-width)),
+        var(--c-rule-line--line-color) calc(100% - var(--c-rule-line--line-width))
+      );
+    }
+
+    // 破線（横方向の線形グラデーション + マスク）
+    &.c-rule-line--dash {
+      background-size: calc(var(--c-rule-line--dash-width) + var(--c-rule-line--dash-margin)) 100%;
+      background-image: linear-gradient(
+        to right,
+        var(--c-rule-line--line-color) var(--c-rule-line--dash-width),
+        transparent var(--c-rule-line--dash-width)
+      );
+      mask-size: 100% var(--c-rule-line--line-height);
+      mask-image: linear-gradient(
+        to bottom,
+        transparent calc(var(--c-rule-line--line-height) - var(--c-rule-line--line-width)),
+        #000 calc(var(--c-rule-line--line-height) - var(--c-rule-line--line-width))
+      );
+    }
+  }
+}

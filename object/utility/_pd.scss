@@ -1,0 +1,37 @@
+// padding
+@use "sass:map";
+@use "../../method";
+
+@mixin u-pd($config) {
+  // 全環境
+  @each $size, $val in map.get($config, core, spacer, pc) {
+    @include _u-pd($size);
+  }
+
+  @each $media in map.get($config, core, media-prefix) {
+    @media #{method.mq($config, $media)} {
+      @each $size, $val in map.get($config, core, spacer, $media) {
+        @include _u-pd($size, "#{$media}\\:");
+      }
+    }
+  }
+}
+
+/**
+* $size: s3, s2 ,n など
+* $media: pc, tb, sp など
+**/
+@mixin _u-pd($size, $media: "") {
+  .#{$media}u-pd_t_#{$size} {
+    padding-top: var(--root-spacer_#{$size});
+  }
+  .#{$media}u-pd_b_#{$size} {
+    padding-bottom: var(--root-spacer_#{$size});
+  }
+  .#{$media}u-pd_r_#{$size} {
+    padding-right: var(--root-spacer_#{$size});
+  }
+  .#{$media}u-pd_l_#{$size} {
+    padding-left: var(--root-spacer_#{$size});
+  }
+}

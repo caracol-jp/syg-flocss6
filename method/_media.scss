@@ -1,0 +1,7 @@
+@use "sass:map";
+
+// メディアクエリー条件を取得する関数
+// 使い方: @media #{method.mq($config, pc)} { ... }
+@function mq($config, $key) {
+  @return map.get($config, core, media-query, $key);
+}
