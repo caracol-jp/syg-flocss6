@@ -6,7 +6,6 @@
 
 - **パッケージ名**: `@sygnas/syg-flocss6`（npm public 公開予定）
 - **位置付け**: [FLOCSS](https://github.com/hiloki/flocss) をベースにした CSS フレームワーク。`syg-flocss5` の後継版
-- **状態**: v5 → v6 の移植（Phase 1）と主要リファクタ（Phase 2）は完了済み。本リポジトリ自体がフレームワーク本体 + 動作検証 + ドキュメントを兼ねる
 - **ドキュメント**: VitePress で構築（`docs/src/`）
 
 ## ディレクトリ構成
