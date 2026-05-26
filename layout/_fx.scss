@@ -5,8 +5,9 @@
 // align-items -> _ali.scss
 // order -> _order.scss
 
-@use "sass:map";
-@use "../method";
+@use 'sass:math';
+@use 'sass:map';
+@use '../method';
 
 @mixin l-fx($config) {
   // クラス接頭辞に使うメディアキー（pc / tb / sp）
@@ -35,29 +36,19 @@
     // メディアクエリー毎の設定
     @each $media in $media-prefix {
       @media #{method.mq($config, $media)} {
-        @include _l-fx--dir("#{$media}\\:");
+        @include _l-fx--dir('#{$media}\\:');
       }
     }
   }
 
-  // セル：min-width 共通
-  [class*="l-fx__item_"] {
-    min-width: 0;
-  }
-
   // セル：分割数指定
-  // 計算式は属性セレクタに集約し、各分割数クラスは CSS 変数の代入のみを行う
-  // _auto 系は計算対象外（:not で除外）
   // <div class="l-fx"><div class="l-fx__item_2-1">
-  [class*="l-fx__item_"]:not([class*="_auto"]) {
-    flex: 0 0 calc(100% / var(--l-fx__item--divide) * var(--l-fx__item--span) - var(--l-gap-x, 0px) * var(--l-fx__item--span) / var(--l-fx__item--divide));
-  }
 
   @include _l-fx__item($config);
 
   @each $media in $media-prefix {
     @media #{method.mq($config, $media)} {
-      @include _l-fx__item($config, "#{$media}\\:");
+      @include _l-fx__item($config, '#{$media}\\:');
     }
   }
 
@@ -66,29 +57,32 @@
 
   @each $media in $media-prefix {
     @media #{method.mq($config, $media)} {
-      @include _l-fx__item_auto("#{$media}\\:");
+      @include _l-fx__item_auto('#{$media}\\:');
     }
+  }
+
+  [class*='l-fx__item'] {
+    min-width: 0;
   }
 }
 
 /////////////////////////
 // コンテンツ幅ぴったり
-@mixin _l-fx__item_auto($media: "") {
+@mixin _l-fx__item_auto($media: '') {
   .#{$media}l-fx__item_auto {
     flex: 1 1 0%;
   }
 }
 
 /////////////////////////
-// セル分割数指定（CSS 変数の代入のみ。flex の計算式は属性セレクタ側）
-@mixin _l-fx__item($config, $media: "") {
+// セル分割数指定
+@mixin _l-fx__item($config, $media: '') {
   $divideList: map.get($config, layout, fx, divide);
 
   @for $divide from 1 through $divideList {
     @for $span from 1 through $divide {
       .#{$media}l-fx__item_#{$divide}-#{$span} {
-        --l-fx__item--divide: #{$divide};
-        --l-fx__item--span: #{$span};
+        flex: 0 0 calc(#{math.div(100%, $divide) * $span} - var(--l-gap-x, 0px) * $span / $divide);
       }
     }
   }
@@ -96,7 +90,7 @@
 
 /////////////////////////
 // 方向
-@mixin _l-fx--dir($media: "") {
+@mixin _l-fx--dir($media: '') {
   &.#{$media}l-fx--dir_row {
     flex-direction: row;
   }
