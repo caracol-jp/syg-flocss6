@@ -2,6 +2,8 @@
 
 このファイルは Claude Code がこのリポジトリで作業する際の指針です。
 
+開発中に得た知見・ノウハウは [.claude/knowledge.md](.claude/knowledge.md) を参照。
+
 ## プロジェクト概要
 
 - **パッケージ名**: `@sygnas/syg-flocss6`（npm public 公開予定）
