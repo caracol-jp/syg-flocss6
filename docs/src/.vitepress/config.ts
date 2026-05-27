@@ -30,6 +30,7 @@ export default defineConfig({
         text: "ガイド",
         items: [
           { text: "はじめに", link: "/guide/getting-started" },
+          { text: "プロジェクトで使う", link: "/guide/use-in-project" },
         ],
       },
       {

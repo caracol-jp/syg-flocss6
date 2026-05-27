@@ -10,6 +10,9 @@ hero:
       text: はじめに
       link: /guide/getting-started
     - theme: alt
+      text: プロジェクトで使う
+      link: /guide/use-in-project
+    - theme: alt
       text: コンポーネント一覧
       link: /component/
 
