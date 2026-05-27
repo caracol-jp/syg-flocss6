@@ -25,7 +25,10 @@
     // color
     @each $name, $color in map.get($config, core, color) {
       @each $type, $code in $color {
-        $suffix: if($type == "base", "", "-#{$type}");
+        $suffix: "";
+        @if $type != "base" {
+          $suffix: "-#{$type}";
+        }
         $r: method.color-channel($code, "red");
         $g: method.color-channel($code, "green");
         $b: method.color-channel($code, "blue");
