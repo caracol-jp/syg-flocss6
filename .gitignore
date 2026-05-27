@@ -1,7 +1,7 @@
 node_modules/
 docs/dist/
-docs/.vitepress/cache/
-docs/.vitepress/dist/
+docs/src/.vitepress/cache/
+docs/src/.vitepress/dist/
 .DS_Store
 *.log
 yarn-error.log
