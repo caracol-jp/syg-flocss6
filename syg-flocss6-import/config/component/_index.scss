@@ -21,7 +21,6 @@
 @use 'accordion' as *;
 @use 'txt-box' as *;
 @use 'article-visual' as *;
-@use 'fancybox' as *;
 
 // コア側がコンパイル時パラメータとして参照する設定マップ
 // hamburger のみ line.count / transform-origin を保持（他は不要）
@@ -41,7 +40,6 @@ $component: (
   @include c-embed($config);
   @include c-frame($config);
   @include c-hamburger($config);
-  @include fancybox($config);
   @include c-list-common($config);
   @include c-list-ul($config);
   @include c-list-ol($config);
