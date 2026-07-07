@@ -21,9 +21,36 @@ yarn add -D @sygnas/syg-flocss6
 cp -r node_modules/@sygnas/syg-flocss6/syg-flocss6-import src/sass/
 ```
 
-### 2. `common.scss` を用意
+### 2. ビルドツールに loadPaths を設定（推奨）
+
+ビルドツールの Sass 解決パス（loadPaths）に `node_modules` を追加すると、フレームワーク本体を **`@sygnas/syg-flocss6/...` というパッケージ名**で `@use` できます。相対パス（`../../` の階層依存）で壊れやすくなるのを避けられるため、こちらの方式を推奨します。
+
+Vite の場合：
+
+```js
+// vite.config.js
+export default {
+  css: {
+    preprocessorOptions: {
+      scss: {
+        loadPaths: ["node_modules"],
+      },
+    },
+  },
+};
+```
+
+Sass CLI の場合：
+
+```bash
+sass --load-path=node_modules src/sass/common.scss dist/common.css
+```
+
+### 3. `common.scss` を用意
 
 `src/sass/common.scss` を作成し、フレームワーク本体と派生設定を `@use` します。
+
+loadPaths を設定した場合（パッケージ名で `@use`。推奨）：
 
 ```scss
 @use "sass:map";
@@ -36,13 +63,13 @@ cp -r node_modules/@sygnas/syg-flocss6/syg-flocss6-import src/sass/
 @use "./syg-flocss6-import/config/effect" as syg-flocss6-effect-project;
 @use "./syg-flocss6-import/config/component" as syg-flocss6-component-project;
 
-// フレームワーク本体
-@use "../../node_modules/@sygnas/syg-flocss6/core" as syg-flocss6-core;
-@use "../../node_modules/@sygnas/syg-flocss6/foundation" as syg-flocss6-foundation;
-@use "../../node_modules/@sygnas/syg-flocss6/layout" as syg-flocss6-layout;
-@use "../../node_modules/@sygnas/syg-flocss6/object/component" as syg-flocss6-component;
-@use "../../node_modules/@sygnas/syg-flocss6/object/effect" as syg-flocss6-effect;
-@use "../../node_modules/@sygnas/syg-flocss6/object/utility" as syg-flocss6-utility;
+// フレームワーク本体（パッケージ名で解決）
+@use "@sygnas/syg-flocss6/core" as syg-flocss6-core;
+@use "@sygnas/syg-flocss6/foundation" as syg-flocss6-foundation;
+@use "@sygnas/syg-flocss6/layout" as syg-flocss6-layout;
+@use "@sygnas/syg-flocss6/object/component" as syg-flocss6-component;
+@use "@sygnas/syg-flocss6/object/effect" as syg-flocss6-effect;
+@use "@sygnas/syg-flocss6/object/utility" as syg-flocss6-utility;
 
 // 適用
 @include syg-flocss6-core.core($config);
@@ -56,7 +83,19 @@ cp -r node_modules/@sygnas/syg-flocss6/syg-flocss6-import src/sass/
 @include syg-flocss6-utility.utility($config);
 ```
 
-### 3. コンパイル
+loadPaths を使えない場合は、フレームワーク本体を相対パスで `@use` します（`common.scss` の設置階層に合わせて `../../` の深さを調整してください）：
+
+```scss
+// フレームワーク本体（相対パスで解決）
+@use "../../node_modules/@sygnas/syg-flocss6/core" as syg-flocss6-core;
+@use "../../node_modules/@sygnas/syg-flocss6/foundation" as syg-flocss6-foundation;
+@use "../../node_modules/@sygnas/syg-flocss6/layout" as syg-flocss6-layout;
+@use "../../node_modules/@sygnas/syg-flocss6/object/component" as syg-flocss6-component;
+@use "../../node_modules/@sygnas/syg-flocss6/object/effect" as syg-flocss6-effect;
+@use "../../node_modules/@sygnas/syg-flocss6/object/utility" as syg-flocss6-utility;
+```
+
+### 4. コンパイル
 
 任意のビルドツール（Vite / webpack / Sass CLI）でコンパイルしてください。
 
