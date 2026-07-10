@@ -44,7 +44,7 @@ cd ＜syg-flocss6のフォルダ＞
 yarn link
 
 # 2. 利用先プロジェクトでリンク使用
-cd /path/to/利用先プロジェクト
+cd ＜利用先プロジェクト＞
 yarn link "@sygnas/syg-flocss6"
 ```
 
