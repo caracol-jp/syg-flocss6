@@ -4,39 +4,21 @@
 @use '../../method';
 
 @mixin u-txt($config) {
-  // 寄せ
+  // ベース（メディアクエリ無し）をまとめて出力
   @include _u-txt_left();
+  @include _u-txt_center();
+  @include _u-txt_right();
+  @include _u-txt_justify();
 
+  // メディアクエリ限定版をベースより後に出力（優先させるため）
   @each $media in map.get($config, core, media-prefix) {
     @media #{method.mq($config, $media)} {
       @include _u-txt_left('#{$media}\\:');
-    }
-  }
-
-  @include _u-txt_center();
-
-  @each $media in map.get($config, core, media-prefix) {
-    @media #{method.mq($config, $media)} {
       @include _u-txt_center('#{$media}\\:');
-    }
-  }
-
-  @include _u-txt_right();
-
-  @each $media in map.get($config, core, media-prefix) {
-    @media #{method.mq($config, $media)} {
       @include _u-txt_right('#{$media}\\:');
+      // ジャスティファイをメディアクエリで切り替えることは無いと思うので除外
     }
   }
-
-  @include _u-txt_justify();
-
-  // ジャスティファイをメディアクエリで切り替えることは無いと思うので除外
-  // @each $media in map.get($config, core, media-prefix) {
-  //   @media #{method.mq($config, $media)} {
-  //     @include _u-txt_justify("#{$media}\\:");
-  //   }
-  // }
 
   // ダーシ・ダッシュ（長音棒）
   .u-txt_dash {
