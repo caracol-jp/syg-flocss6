@@ -51,6 +51,6 @@
   @include c-table($config);
   @include c-txt-box($config);
   // @include c-form($config);
-  // @include c-notice($config);
+  @include c-notice($config);
   // @include perfect-scrollbar-custom($config);
 }
