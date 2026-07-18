@@ -51,12 +51,25 @@
 
 ## アコーディオン（`.c-accordion`）
 
+簡易アコーディオン：
 ```html
 <details class="c-accordion">
   <summary>クリックで開閉</summary>
   <div>中身</div>
 </details>
 ```
+
+アニメーション付きアコーディオン：
+```html
+<section class="c-accordion u-mg_t_n js-is-open">
+  <div class="c-accordion__summary js-is-open-button">出演者へのプレゼント・お花について</div>
+  <div class="c-accordion__content">
+    <div class="c-accordion__body">内容</div>
+  </div>
+</section>
+```
+
+> アニメーション付きは javascript で `.js-is-open` に対して `setAttribute('data-is-open', now === 'true' ? 'false' : 'true');` をすることで開閉を実現。
 
 ---
 
