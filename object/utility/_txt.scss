@@ -16,7 +16,7 @@
       @include _u-txt_left('#{$media}\\:');
       @include _u-txt_center('#{$media}\\:');
       @include _u-txt_right('#{$media}\\:');
-      // ジャスティファイをメディアクエリで切り替えることは無いと思うので除外
+      @include _u-txt_justify('#{$media}\\:');
     }
   }
 
