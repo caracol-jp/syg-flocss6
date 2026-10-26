@@ -4,7 +4,7 @@
 
 
 @mixin c-list-ul($config) {
-  .c-list-ul {
+  .c-list-ul, ul.wp-block-list {
     --c-list-ul--padding-left: 2em;
     --c-list-ul--line-height: var(--root-line-height);
     --c-list-ul__li--margin-top: var(--root-spacer_s3);

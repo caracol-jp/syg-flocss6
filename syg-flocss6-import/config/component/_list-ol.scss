@@ -4,7 +4,7 @@
 
 
 @mixin c-list-ol($config) {
-  .c-list-ol {
+  .c-list-ol, ol.wp-block-list {
     --c-list-ol--padding-left: 0;
     --c-list-ol--line-height: var(--root-line-height);
     --c-list-ol__li--margin-top: var(--root-spacer_s3);
@@ -22,7 +22,7 @@
     --c-list-ol__li-before--font-weight: 700;
   }
   // カウンターの表記
-  .c-list-ol li::before {
+  .c-list-ol li::before, ol.wp-block-list li::before {
     content: counters(section, ".") ".";
   }
 

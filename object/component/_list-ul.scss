@@ -6,7 +6,7 @@
 @mixin c-list-ul($config) {
   // 普通のリスト
   // <ul class="c-list-ul">
-  .c-list-ul {
+  .c-list-ul, ul.wp-block-list {
     @include list-ul-basic($config);
     @include list-ul-li-basic($config);
   }

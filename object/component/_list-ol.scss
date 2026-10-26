@@ -5,7 +5,7 @@
 @use "list-common";
 
 @mixin c-list-ol($config) {
-  .c-list-ol {
+  .c-list-ol, ol.wp-block-list {
     @include list-ol-basic($config);
     @include list-ol-li-basic($config);
   }
