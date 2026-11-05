@@ -18,6 +18,7 @@
 @use "ruby" as *;
 @use "rule-line" as *;
 @use "share-btn" as *;
+@use "official-link" as *;
 @use "table" as *;
 // @use "perfect-scrollbar" as *;
 @use "fancybox" as *;
@@ -48,6 +49,7 @@
   @include c-rule-line($config);
   @include c-sound-btn($config);
   @include c-share-btn($config);
+  @include c-official-link($config);
   @include c-table($config);
   @include c-txt-box($config);
   // @include c-form($config);

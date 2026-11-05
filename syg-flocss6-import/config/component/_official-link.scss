@@ -1,0 +1,68 @@
+// ソーシャルシェアボタン
+// <div class="c-official-link">
+//   <a href="https://x.com/<?= TWITTER_ACCOUNT ?>" target="_blank" class="c-official-link__item" data-service="x"></a>
+// </div>
+// 構造はコア側（node_modules/.../object/component/_official-link.scss）で管理
+
+
+@use 'sass:map';
+@use 'sass:color';
+
+// サービス毎の色定義
+$_service: (
+  x: "\e91d",
+  tiktok: "\e916",
+  youtube: "\e91b",
+  instagram: "\e906"
+);
+
+
+@mixin c-official-link($config) {
+  $mq: map.get($config, core, media-query);
+
+
+  .c-official-link__item {
+    --c-official-link--item-color: #fff;
+    --c-official-link--item-border: none;
+    --c-official-link--item-bg: #000;
+    --c-official-link--item-color-hover: #fff;
+    --c-official-link--item-border-hover: none;
+    --c-official-link--item-bg-hover: #c00;
+    --c-official-link--item-transition: 0.2s;
+
+    &:before{
+      font-family: brand;
+    }
+
+    @each $key, $code in $_service{
+      &[data-service = '#{$key}']:before{
+        content: "#{$code}";
+      }
+    }
+  }
+
+
+  @media #{map.get($mq, pc)} {
+    .c-official-link {
+      --c-official-link--gap: 0.5rem;
+    }
+    .c-official-link__item {
+      --c-official-link--item-width: 35px;
+      --c-official-link--item-height: 35px;
+      --c-official-link--item-border-radius: 50%;
+      --c-official-link--item-font-size: 18px;
+    }
+  }
+  @media #{map.get($mq, tb-lo)} {
+    .c-official-link {
+      --c-official-link--gap: 0.5rem;
+    }
+    .c-official-link__item {
+      --c-official-link--item-width: 40px;
+      --c-official-link--item-height: 40px;
+      --c-official-link--item-border-radius: 50%;
+      --c-official-link--item-font-size: 20px;
+    }
+  }
+
+}

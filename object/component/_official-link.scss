@@ -1,0 +1,59 @@
+// 公式SNSリンクボタン
+// テーマ・サービス色は派生側（syg-flocss6-import/config/component/_official-link.scss）で設定
+
+// hover 時の共通スタイル
+@mixin _c-official-link-hover {
+  color: var(--c-official-link--item-color-hover, var(--root-font-color));
+  border: var(--c-official-link--item-border-hover, none);
+  background: var(--c-official-link--item-bg-hover, transparent);
+
+  i::before {
+    color: var(--c-official-link--item-color-hover, var(--root-font-color));
+  }
+}
+
+@mixin c-official-link($config) {
+  .c-official-link {
+    display: flex;
+    gap: var(--c-official-link--item-gap, 0.5rem);
+  }
+
+  .c-official-link__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: var(--c-official-link--item-width, 2rem);
+    height: var(--c-official-link--item-height, 2rem);
+    border-radius: var(--c-official-link--item-border-radius, 0);
+    font-size: var(--c-official-link--item-font-size, 1rem);
+    -webkit-font-smoothing: antialiased;
+    text-decoration: none;
+    user-select: none;
+    white-space: nowrap;
+    appearance: none;
+    cursor: pointer;
+    line-height: 1;
+    transition: var(--c-official-link--item-transition, .3s);
+    color: var(--c-official-link--item-color, var(--root-font-color));
+    border: var(--c-official-link--item-border, none);
+    background: var(--c-official-link--item-bg, transparent);
+
+    i {
+      &::before {
+        color: var(--c-official-link--item-color);
+        transition: var(--c-official-link--item-transition);
+      }
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        @include _c-official-link-hover;
+      }
+    }
+    &:focus,
+    &:active {
+      @include _c-official-link-hover;
+    }
+  }
+}
+

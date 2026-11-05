@@ -16,6 +16,7 @@
 @use 'ruby' as *;
 @use 'rule-line' as *;
 @use 'share-btn' as *;
+@use 'official-link' as *;
 @use 'sound-btn' as *;
 @use 'table' as *;
 @use 'accordion' as *;
@@ -50,6 +51,7 @@ $component: (
   @include c-ruby($config);
   @include c-rule-line($config);
   @include c-share-btn($config);
+  @include c-official-link($config);
   @include c-sound-btn($config);
   @include c-table($config);
   @include c-txt-box($config);
